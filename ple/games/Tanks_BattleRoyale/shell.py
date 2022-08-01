@@ -11,10 +11,10 @@ Each fireball can check for collisions in order to decide when to turn and when 
 '''
 
 
-class Fireball(OnBoard):
+class Shell(OnBoard):
 
     def __init__(self, raw_image, position, index, speed, rng, dir):
-        super(Fireball, self).__init__(raw_image, position)
+        super(Shell, self).__init__(raw_image, position)
         # Set the fireball direction randomly
         self.rng = rng
         self.__direction = int(math.floor(self.rng.rand() * 100)) % 2
