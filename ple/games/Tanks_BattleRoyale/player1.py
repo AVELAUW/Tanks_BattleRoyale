@@ -4,7 +4,6 @@ from .person import Person
 '''
 This class defines our player.
 It inherits from the Person class since a Player is also a person.
-We specialize the person by adding capabilities such as jump etc..
 '''
 
 
@@ -12,10 +11,7 @@ class Player1(Person):
 
     def __init__(self, raw_image, position, width, height):
         super(Player1, self).__init__(raw_image, position, width, height)
-        self.isJumping = 0
-        self.onLadder = 0
-        self.currentJumpSpeed = 0
-        self.__gravity = 0.85  # Gravity affecting the jump velocity of the player
+        self.index = 1
         self.__speed = 5  # Movement speed of the player
 
     # Getters and Setters
