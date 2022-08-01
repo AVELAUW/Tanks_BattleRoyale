@@ -5,7 +5,7 @@ import pygame
 class Environment(pygame.sprite.Sprite):
     '''
     This class defines all inanimate objects needed to display the game board.
-    Any object that is on the board and NOT a person, falls under this class (e.g. walls, shells)
+    Any object that is on the board and NOT a person, falls under this class (e.g. walls and shells)
     '''
 
     def __init__(self, raw_image, position):
