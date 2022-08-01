@@ -19,10 +19,10 @@ class Player(Person):
     def setSpeed(self):
         return self.__speed
 
-    # This manages the players jump
-    # Only the player can jump (For the player's jump)
-    def continuousUpdate(self, wallGroupList, ladderGroupList):
-        # Only gets run when the player is not on the ladder
+    # This manages the players shell
+    def continuousUpdate(self, wallGroupList):
+        # Only run when the player has no shell on the map
+        
         if self.onLadder == 0:
             wallsCollided = self.checkCollision(wallGroupList)
 
@@ -38,32 +38,3 @@ class Player(Person):
                 if len(wallsCollided) == 0 and len(laddersCollided) == 0:
                     self.isJumping = 1
                     self.currentJumpSpeed = 0
-
-            # If the player is jumping
-            if self.isJumping:
-                if wallsCollided:
-                    # If you collide a wall while jumping  and its below you,
-                    # then you stop the jump
-                    if wallsCollided[0].getPosition()[1] > self.getPosition()[
-                            1]:  # wallsize/2 and charsize/2 and +1
-                        self.isJumping = 0
-                        self.setPosition(((self.getPosition()[0], wallsCollided[0].getPosition()[
-                            1] - (self.height + 1))))  # Wall size/2 and charactersize/2 and +1
-                        # print "HIT FLOOR"
-                    # If you collide a wall while jumping and its above you,
-                    # then you hit the ceiling so you make jump speed 0 so he
-                    # falls down
-                    elif wallsCollided[0].getPosition()[1] < self.getPosition()[1]:
-                        self.currentJumpSpeed = 0
-                        self.setPosition((self.getPosition()[0], wallsCollided[
-                                         0].getPosition()[1] + (self.height + 1)))
-                        # print "HIT TOP"
-                self.setCenter(self.getPosition())
-                # If he is still jumping (ie. hasnt touched the floor yet)
-                if self.isJumping:
-                    # We move him down by the currentJumpSpeed
-                    self.updateY(-self.currentJumpSpeed)
-                    self.setCenter(self.getPosition())
-                    self.currentJumpSpeed -= self.__gravity  # Affect the jump speed with gravity
-                    if self.currentJumpSpeed < -8:
-                        self.currentJumpSpeed = -8
