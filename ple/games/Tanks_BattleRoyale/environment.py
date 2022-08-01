@@ -4,9 +4,8 @@ import pygame
 
 class Environment(pygame.sprite.Sprite):
     '''
-    This class defines all inanimate objects that we need to display on our board.
-    Any object that is on the board and not a person, comes under this class (ex. Coins,Ladders,Walls etc)
-    Sets up the image and its position for all its child classes.
+    This class defines all inanimate objects needed to display the game board.
+    Any object that is on the board and NOT a person, falls under this class (e.g. walls, shells)
     '''
 
     def __init__(self, raw_image, position):
@@ -14,7 +13,7 @@ class Environment(pygame.sprite.Sprite):
         self.__position = position
         self.image = raw_image
         self.image = pygame.transform.scale(self.image,
-                                            (15, 15))  # Image and Rect required for the draw function on sprites
+                                            (32, 32))  # Image and Rect required for the draw function on sprites
         self.rect = self.image.get_rect()
         self.rect.center = self.__position
 
