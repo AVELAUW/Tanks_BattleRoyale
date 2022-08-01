@@ -79,14 +79,14 @@ class Board(object):
             Wall(self.IMAGES["lives"], (self.__width - 128, 0)) # For player2
         ]
         #for playa in self.Lives: playa.modifySize(self.IMAGES[lives], 32, 96)
-        self.Hearts = [
-            Wall(self.IMAGES["heart"], (32, 0)), # player1 life1
-            Wall(self.IMAGES["heart"], (64, 0)), # player1 life2
-            Wall(self.IMAGES["heart"], (96, 0)), # player1 life3
-            Wall(self.IMAGES["heart"], (self.__width - 32, 0)), # player2 life1
-            Wall(self.IMAGES["heart"], (self.__width - 64, 0)), # player2 life2
-            Wall(self.IMAGES["heart"], (self.__width - 96, 0)) # player2 life3
-        ]
+        #self.Hearts = [
+        #    Wall(self.IMAGES["heart"], (32, 0)), # player1 life1
+        #    Wall(self.IMAGES["heart"], (64, 0)), # player1 life2
+        #    Wall(self.IMAGES["heart"], (96, 0)), # player1 life3
+        #    Wall(self.IMAGES["heart"], (self.__width - 32, 0)), # player2 life1
+        #    Wall(self.IMAGES["heart"], (self.__width - 64, 0)), # player2 life2
+        #    Wall(self.IMAGES["heart"], (self.__width - 96, 0)) # player2 life3
+        #]
         self.initializeGame()  # This initializes the game and generates our map
         self.createGroups()  # This creates the instance groups
 
