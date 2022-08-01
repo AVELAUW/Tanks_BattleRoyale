@@ -90,12 +90,9 @@ class TanksBattleRoyale(PyGameWrapper):
         # Animate an object
         #for obj in self.objGroup:
         #    obj.animateObj()
-
-        # To check for collisions above, we move the player up then check and
-        # then move him back down
-        self.newGame.Players[0].updateY(-2)
-        self.wallsCollidedAbove = self.newGame.Players[0].checkCollision(self.wallGroup)
-        self.newGame.Players[0].updateY(2)
+        counter = 0
+        print(counter)
+        counter += 1
 
         for event in pygame.event.get():
             # Exit to desktop
