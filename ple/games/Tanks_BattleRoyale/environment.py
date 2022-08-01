@@ -1,6 +1,4 @@
-__author__ = 'Batchu Vishal'
 import pygame
-
 
 class Environment(pygame.sprite.Sprite):
     '''
@@ -12,8 +10,7 @@ class Environment(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.__position = position
         self.image = raw_image
-        self.image = pygame.transform.scale(self.image,
-                                            (32, 32))  # Image and Rect required for the draw function on sprites
+        self.image = pygame.transform.scale(self.image, (32, 32))  # Image and Rect required for the draw function on sprites
         self.rect = self.image.get_rect()
         self.rect.center = self.__position
 
