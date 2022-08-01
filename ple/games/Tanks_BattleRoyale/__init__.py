@@ -1,10 +1,8 @@
 __author__ = 'Batchu Vishal'
 import pygame
 import sys
-from pygame.constants import K_a, K_d, K_SPACE, K_w, K_s, QUIT, KEYDOWN
+from pygame.constants import K_a, K_d, K_w, K_s, K_SPACE, K_LEFT, K_RIGHT, K_UP, K_DOWN, K_RETURN, KEYDOWN, KEYUP, QUIT
 from .board import Board
-#from ..base import base
-#from ple.games import base
 from ple.games.base.pygamewrapper import PyGameWrapper
 import numpy as np
 import os
@@ -14,30 +12,34 @@ class TanksBattleRoyale(PyGameWrapper):
 
     def __init__(self):
         """
-        Parameters
-        ----------
-        None
-
+        Input parameters here
+        
         """
 
-        self.height = 465
-        self.width = 500
+        self.height = 352
+        self.width = 352
 
         actions = {
-            "left": K_a,
-            "right": K_d,
-            "jump": K_SPACE,
-            "up": K_w,
-            "down": K_s
+            "p1_left": K_a,
+            "p1_right": K_d,
+            "p1_up": K_w,
+            "p1_down": K_s,
+            "p1_fire": K_SPACE,
+            "p2_left": K_LEFT,
+            "p2_right": K_RIGHT,
+            "p2_up": K_UP,
+            "p2_down": K_DOWN,
+            "p2_fire": K_RETURN
         }
 
         PyGameWrapper.__init__(
             self, self.width, self.height, actions=actions)
 
         self.rewards = {
-            "positive": 5,
-            "win": 50,
-            "negative": -25,
+            "p1_hit": -1,
+            "p1_lost": -10,
+            "p2_hit": -1,
+            "p2_lost": -10,
             "tick": 0
         }
 
@@ -47,10 +49,9 @@ class TanksBattleRoyale(PyGameWrapper):
 
         self.IMAGES = {
             "right": pygame.image.load(os.path.join(self._dir, 'assets/right.png')),
-            "right2": pygame.image.load(os.path.join(self._dir, 'assets/right2.png')),
+            "up": pygame.image.load(os.path.join(self._dir, 'assets/up.png')),
             "left": pygame.image.load(os.path.join(self._dir, 'assets/left.png')),
-            "left2": pygame.image.load(os.path.join(self._dir, 'assets/left2.png')),
-            "still": pygame.image.load(os.path.join(self._dir, 'assets/still.png'))
+            "down": pygame.image.load(os.path.join(self._dir, 'assets/down.png'))
         }
 
     def init(self):
