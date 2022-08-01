@@ -77,6 +77,7 @@ class TanksBattleRoyale(PyGameWrapper):
         return 21 # error
 
     def game_over(self):
+        print(self.newGame.p1_lives, self.newGame.p2_lives)
         return (self.newGame.p1_lives <= 0 or self.newGame.p2_lives <= 0)
     
     #def getGameState(self):
