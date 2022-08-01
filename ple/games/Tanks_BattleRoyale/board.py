@@ -162,7 +162,7 @@ class Board(object):
     You use the 2D map to add instances to the groups
     '''
     def populateMap(self):
-        hearts = 0
+        num_hearts = 0
         for x in range(len(self.map)):
             for y in range(len(self.map[x])):
                 if self.map[x][y] == 1:
@@ -170,11 +170,12 @@ class Board(object):
                     self.Walls.append(Environment(self.IMAGES["wood_block"],(x * 32, y * 32)))
                 elif self.map[x][y] == 5:
                     # Add the hearts at their position
-                    print(hearts)
+                    print(num_hearts)
                     print(self.Hearts)
                     print(self.Hearts[0])
-                    self.Hearts[hearts] = Environment(self.IMAGES["hearts"],(x * 32, y * 32))
-                    hearts += 1
+                    print(self.Hearts[num_hearts])
+                    self.Hearts[num_hearts] = Environment(self.IMAGES["hearts"],(x * 32, y * 32))
+                    num_hearts += 1
 
     # Update all the shell positions and check for collisions with players
     def shellCheck(self):
