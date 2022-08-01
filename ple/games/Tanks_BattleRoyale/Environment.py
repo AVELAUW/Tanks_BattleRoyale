@@ -2,7 +2,7 @@ __author__ = 'Batchu Vishal'
 import pygame
 
 
-class OnBoard(pygame.sprite.Sprite):
+class Environment(pygame.sprite.Sprite):
     '''
     This class defines all inanimate objects that we need to display on our board.
     Any object that is on the board and not a person, comes under this class (ex. Coins,Ladders,Walls etc)
