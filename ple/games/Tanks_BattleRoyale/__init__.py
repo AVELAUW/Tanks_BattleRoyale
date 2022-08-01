@@ -90,9 +90,6 @@ class TanksBattleRoyale(PyGameWrapper):
         # Animate an object
         #for obj in self.objGroup:
         #    obj.animateObj()
-        counter = 0
-        print(counter)
-        counter += 1
 
         for event in pygame.event.get():
             # Exit to desktop
