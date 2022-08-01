@@ -7,7 +7,7 @@ If you want, you can add traps or powerups to walls such to damage or heal the p
 '''
 
 
-class Wall(OnBoard):
+class Wall(Environment):
 
     def __init__(self, raw_image, position):
         super(Wall, self).__init__(raw_image, position)
