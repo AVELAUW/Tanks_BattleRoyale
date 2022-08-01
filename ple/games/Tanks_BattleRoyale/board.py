@@ -170,6 +170,7 @@ class Board(object):
                     self.Walls.append(Environment(self.IMAGES["wood_block"],(x * 32, y * 32)))
                 elif self.map[x][y] == 5:
                     # Add the hearts at their position
+                    print(hearts)
                     self.Hearts[hearts] = Environment(self.IMAGES["hearts"],(x * 32, y * 32))
                     hearts += 1
 
