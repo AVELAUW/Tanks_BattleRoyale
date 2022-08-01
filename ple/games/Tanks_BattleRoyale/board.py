@@ -20,9 +20,9 @@ class Board(object):
         self.__width = width
         self.__height = height # + 10
         self.value = value # Shell speed
-        self.lives = lives
-        self.p1_lives = self.lives
-        self.p2_lives = self.lives
+        self.life = lives
+        self.p1_lives = self.life
+        self.p2_lives = self.life
         self.cycles = 0 # For the tank animations
         self.p1_dir = 1 # player1 is on the left, facing right
         self.p2_dir = 3 # player2 is on the right, facing left
@@ -49,7 +49,7 @@ class Board(object):
         self.Players = [None] * 2
         self.Walls = []
         self.Shells = [None] * 2
-        self.Lives = [None] * 2
+        self.Lives = [self.life] * 2
         self.Hearts = [None] * 6
 
         # Resets the above groups and initializes the game for us
@@ -66,8 +66,8 @@ class Board(object):
         self.cycles = 0 # For the tank animations
         self.p1_dir = 1 # player1 is on the left, facing right
         self.p2_dir = 3 # player2 is on the right, facing left
-        self.p1_lives = self.lives
-        self.p2_lives = self.lives
+        self.p1_lives = self.life
+        self.p2_lives = self.life
         self.map = []  # We will create the map again when we reset the game
         self.Players = [
             Player(self.IMAGES["tank_right1"], (0, int(self.__height / 2)), 32, 32, 1),
