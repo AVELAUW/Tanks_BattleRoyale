@@ -1,17 +1,15 @@
-__author__ = 'Batchu Vishal'
 from .person import Person
 
 '''
-This class defines our player.
-It inherits from the Person class since a Player is also a person.
+This class defines our tanks players.
+It inherits from the Person class.
 '''
 
 
-class Player1(Person):
-
-    def __init__(self, raw_image, position, width, height):
-        super(Player1, self).__init__(raw_image, position, width, height)
-        self.index = 1
+class Player(Person):
+    def __init__(self, raw_image, position, width, height, index):
+        super(Player, self).__init__(raw_image, position, width, height, index)
+        self.index = index
         self.__speed = 5  # Movement speed of the player
 
     # Getters and Setters
