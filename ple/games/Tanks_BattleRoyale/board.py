@@ -51,7 +51,7 @@ class Board(object):
         self.Shells = [None] * 2
         self.Lives = [self.life] * 2
         self.Hearts = [None] * 6
-
+        print(self.Lives)
         # Resets the above groups and initializes the game for us
         self.resetGroups()
 
