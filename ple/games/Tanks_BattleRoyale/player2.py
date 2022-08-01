@@ -12,7 +12,7 @@ Each Monster can only move on the top floor and cannot move vertically.
 class Player2(Person):
 
     def __init__(self, raw_image, position, rng, dir, width=15, height=15):
-        super(MonsterPerson, self).__init__(raw_image, position, width, height)
+        super(Player2, self).__init__(raw_image, position, width, height)
         self.__speed = 2
         self.rng = rng
         self.__direction = int(self.rng.rand() * 100) % 2
