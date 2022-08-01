@@ -170,11 +170,7 @@ class Board(object):
                     self.Walls.append(Environment(self.IMAGES["wood_block"],(x * 32, y * 32)))
                 elif self.map[x][y] == 5:
                     # Add the hearts at their position
-                    print(num_hearts)
-                    print(self.Hearts)
-                    print(self.Hearts[0])
-                    print(self.Hearts[num_hearts])
-                    self.Hearts[num_hearts] = Environment(self.IMAGES["hearts"],(x * 32, y * 32))
+                    self.Hearts[num_hearts] = Environment(self.IMAGES["heart"],(x * 32, y * 32))
                     num_hearts += 1
 
     # Update all the shell positions and check for collisions with players
