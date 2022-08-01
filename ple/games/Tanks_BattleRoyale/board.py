@@ -26,17 +26,18 @@ class Board(object):
         self.cycles = 0 # For the tank animations
         self.p1_dir = 1 # player1 is on the left, facing right
         self.p2_dir = 3 # player2 is on the right, facing left
-
+        
+        self._dir = os.path.dirname(os.path.abspath(__file__))
         self.IMAGES = {
-            "tank_left1": pygame.image.load(os.path.join(self.p1_dir, 'assets/tank_left1.png')).convert_alpha(),
-            "tank_right1": pygame.image.load(os.path.join(self.p2_dir, 'assets/tank_right1.png')).convert_alpha(),
-            "wood_block": pygame.image.load(os.path.join(0, 'assets/wood_block.png')).convert_alpha(),
-            "lives": pygame.image.load(os.path.join(0, 'assets/lives.png')).convert_alpha(),
-            "heart": pygame.image.load(os.path.join(0, 'assets/heart.png')).convert_alpha(),
-            "shell_right2": pygame.image.load(os.path.join(1, 'assets/shell_right2.png')).convert_alpha(),
-            "shell_left2": pygame.image.load(os.path.join(3, 'assets/shell_left2.png')).convert_alpha(),
-            "shell_up2": pygame.image.load(os.path.join(0, 'assets/shell_up2.png')).convert_alpha(),
-            "shell_down2": pygame.image.load(os.path.join(2, 'assets/shell_down2.png')).convert_alpha()
+            "tank_left1": pygame.image.load(os.path.join(self._dir, 'assets/tank_left1.png')).convert_alpha(),
+            "tank_right1": pygame.image.load(os.path.join(self._dir, 'assets/tank_right1.png')).convert_alpha(),
+            "wood_block": pygame.image.load(os.path.join(self._dir, 'assets/wood_block.png')).convert_alpha(),
+            "lives": pygame.image.load(os.path.join(self._dir, 'assets/lives.png')).convert_alpha(),
+            "heart": pygame.image.load(os.path.join(self._dir, 'assets/heart.png')).convert_alpha(),
+            "shell_right2": pygame.image.load(os.path.join(self._dir, 'assets/shell_right2.png')).convert_alpha(),
+            "shell_left2": pygame.image.load(os.path.join(self._dir, 'assets/shell_left2.png')).convert_alpha(),
+            "shell_up2": pygame.image.load(os.path.join(self._dir, 'assets/shell_up2.png')).convert_alpha(),
+            "shell_down2": pygame.image.load(os.path.join(self._dir, 'assets/shell_down2.png')).convert_alpha()
         }
 
         self.white = (255, 255, 255)
