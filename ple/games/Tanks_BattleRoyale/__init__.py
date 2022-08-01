@@ -16,7 +16,6 @@ class TanksBattleRoyale(PyGameWrapper):
         self.height = 352
         self.width = 352
         self.value = 10 # Shell speed
-        self.lives = 3 # number of lives per player
 
         actions = {
             "p1_left": K_a,
@@ -61,7 +60,7 @@ class TanksBattleRoyale(PyGameWrapper):
             self.width,
             self.height,
             self.value,
-            self.lives)
+            self._dir)
 
         # Assign groups from the Board instance that was created
         self.playerGroup = self.newGame.playerGroup
