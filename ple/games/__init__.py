@@ -7,4 +7,4 @@ from ple.games.monsterkong import MonsterKong
 #from ple.games.raycastmaze import RaycastMaze
 #from ple.games.snake import Snake
 #from ple.games.waterworld import WaterWorld
-from ple.games.Tanks_BattleRoyale
+from ple.games.Tanks_BattleRoyale import TanksBattleRoyale
