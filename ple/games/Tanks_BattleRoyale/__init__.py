@@ -56,6 +56,7 @@ class TanksBattleRoyale(PyGameWrapper):
 
     def init(self):
         # Create a new instance of the Board class
+        print("init", self.lives)
         self.newGame = Board(
             self.width,
             self.height,
