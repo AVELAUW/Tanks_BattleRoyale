@@ -5,8 +5,7 @@ import os
 
 from .person import Person
 from .environment import Environment
-from .player1 import Player1
-from .player2 import Player2
+from .player import Player
 from .shell import Shell
 from .wall import Wall
 
@@ -17,14 +16,13 @@ class Board(object):
     The generation of the level also happens in this class.
     '''
 
-    def __init__(self, width, height, rewards, value, lives):
+    def __init__(self, width, height, value, lives):
         self.__width = width
         self.__height = height # + 10
         self.value = value # Shell speed
         self.lives = lives
         self.p1_lives = self.lives
         self.p2_lives = self.lives
-        self.rewards = rewards
         self.cycles = 0 # For the tank animations
         self.p1_dir = 1 # player1 is on the left, facing right
         self.p2_dir = 3 # player2 is on the right, facing left
@@ -38,6 +36,7 @@ class Board(object):
             "shell_right2": pygame.image.load(os.path.join(_dir, 'assets/shell_right2.png')).convert_alpha(),
             "shell_left2": pygame.image.load(os.path.join(_dir, 'assets/shell_left2.png')).convert_alpha(),
             "shell_up2": pygame.image.load(os.path.join(_dir, 'assets/shell_up2.png')).convert_alpha(),
+            "shell_down2": pygame.image.load(os.path.join(_dir, 'assets/shell_down2.png')).convert_alpha(),
             "shell_down2": pygame.image.load(os.path.join(_dir, 'assets/shell_down2.png')).convert_alpha()
         }
 
@@ -56,8 +55,7 @@ class Board(object):
         # Resets the above groups and initializes the game for us
         self.resetGroups()
 
-        # Initialize the instance groups which we use to display our instances
-        # on the screen
+        # Initialize the instance groups which we use to display our instances on the screen
         self.shellGroup = pygame.sprite.RenderPlain(self.Shells)
         self.playerGroup = pygame.sprite.RenderPlain(self.Players)
         self.wallGroup = pygame.sprite.RenderPlain(self.Walls)
@@ -72,8 +70,8 @@ class Board(object):
         self.p2_lives = self.lives
         self.map = []  # We will create the map again when we reset the game
         self.Players = [
-            Player1(self.IMAGES["tank_left1"], (1, int(self.__height / 2)), 32, 32),
-            Player2(self.IMAGES["tank_left1"], (self.__width - 33, int(self.__height / 2)), 32, 32)]
+            Player(self.IMAGES["tank_right1"], (0, int(self.__height / 2)), 32, 32, 1),
+            Player(self.IMAGES["tank_left1"], (self.__width - 32, int(self.__height / 2)), 32, 32, 2)]
         self.Walls = []
         self.Shells = []
         self.Lives = [
@@ -90,10 +88,10 @@ class Board(object):
         self.createGroups()  # This creates the instance groups
 
     # Checks to destroy a shell when it reaches its terminal point
-    def checkShellDestroy(self, shell):
-        if pygame.sprite.spritecollide(shell, self.playerGroup, False):
-            # We use indices on shells to uniquely identify each shell
-            self.DestroyShell(shell.index)
+    def checkShellDestroy(self, shell, index):
+        if pygame.sprite.spritecollide(shell, self.playerGroup[index-1], False):
+            # We can use indices on shells to uniquely identify each shell
+            self.DestroyShell(index)
 
     # Creates a new shell and add it to our shell group
     def CreateShell(self, location, direction, playerIndex):
@@ -107,13 +105,28 @@ class Board(object):
                 self.Shells[playerIndex-1](Shell(self.IMAGES["shell_down2"], (location[0], location[1]+32), self.value, direction))
             if direction == 3: # LEFT
                 self.Shells[playerIndex-1](Shell(self.IMAGES["shell_left2"], (location[0]-32, location[1]), self.value, direction))
-
+            self.createGroups()  # We recreate the groups so the shell is added
+            
     # Destroy a shell if it has collided with a player or hit a wall
     def DestroyShell(self, playerIndex):
         if playerIndex == 1:
             self.Shells[0] = None
         if playerIndex == 2:
             self.Shells[1] = None
+        self.createGroups()  # Recreate the groups so the shell is removed
+    
+    # Remove a heart if the player has lost their life
+    def RemoveHeart(self, playerIndex):
+        if playerIndex = 1:
+            self.p1_lives -= 1
+            self.Hearts[0:3] = 0
+            for i in range (0, self.p1_lives):
+                self.Hearts[i] = 5 # a heart
+        if playerIndex = 2:
+            self.p2_lives -= 1
+            self.Hearts[3:6] = 0
+            for i in range (3, self.p1_lives):
+                self.Hearts[i] = 5 # a heart
         self.createGroups()  # Recreate the groups so the shell is removed
 
     # Create an empty 2D map of 11x11 size
@@ -124,123 +137,86 @@ class Board(object):
                 row.append(0)
             self.map.append(row)
 
-    # Add walls to our map boundaries
+    # Add walls to our map
     def makeWalls(self):
         for i in range(int(self.__height / 32)):
             self.map[i][0] = self.map[i][int(self.__width / 32)] = 1
         for j in range(int(self.__width / 32)):
             self.map[0][j] = self.map[int(self.__width / 32)][j] = 1
+    
+    # Add hearts to our map
+    def makeHearts(self):
+        for i in range(3):
+            self.map[0][i] = self.map[0][i] = 5
+            self.map[0][int(self.__width / 32) - j - 1] = self.map[0][int(self.__width / 32) - i - 1] = 5
 
     '''
     This is called once you have finished making the game field
     You use the 2D map to add instances to the groups
     '''
     def populateMap(self):
+        hearts = 0
         for x in range(len(self.map)):
             for y in range(len(self.map[x])):
                 if self.map[x][y] == 1:
                     # Add a wall at that position
-                    self.Walls.append(
-                        OnBoard(
-                            self.IMAGES["wood_block"],
-                            (y * 15 + 15 / 2,
-                             x * 15 + 15 / 2)))
-                elif self.map[x][y] == 2:
-                    # Add a ladder at that position
-                    self.Ladders.append(
-                        OnBoard(
-                            self.IMAGES["ladder"],
-                            (y * 15 + 15 / 2,
-                             x * 15 + 15 / 2)))
+                    self.Walls.append(OnBoard(self.IMAGES["wood_block"],(x * 32, y * 32)))
+                elif self.map[x][y] == 5:
+                    # Add the hearts at their position
+                    self.Hearts[hearts] = OnBoard(self.IMAGES["hearts"],(x * 32, y * 32))
+                    hearts += 1
 
-    # Update all the fireball positions and check for collisions with player
-    def fireballCheck(self):
-        for fireball in self.fireballGroup:
-            fireball.continuousUpdate(self.wallGroup, self.ladderGroup)
-            if fireball.checkCollision(self.playerGroup, "V"):
-                self.Fireballs.remove(fireball)
-                self.Players[0].setPosition((50, 440))
-                self.score += self.rewards["negative"]
-                self.lives += -1
+    # Update all the shell positions and check for collisions with players
+    def shellCheck(self):
+        for i in range(len(self.shellGroup)):
+            self.shellGroup[i].continuousUpdate(self.wallGroup)
+            if i == 0 and shell.checkCollision(self.playerGroup[1]):
+                self.shell[0] = 0
+                self.Players[1].setPosition((self.__width - 32, int(self.__height / 2)))
+                self.p2_lives -= 1
                 self.createGroups()
-            self.checkFireballDestroy(fireball)
-
-    # Check for coins collided and add the appropriate score
-    def coinCheck(self, coinsCollected):
-        for coin in coinsCollected:
-            self.score += self.rewards["positive"]
-            # We also remove the coin entry from our map
-            self.map[int((coin.getPosition()[1] - 15 / 2) /
-                     15)][int((coin.getPosition()[0] - 15 / 2) / 15)] = 0
-            # Remove the coin entry from our list
-            self.Coins.remove(coin)
-            # Update the coin group since we modified the coin list
-            self.createGroups()
+            if i == 1 and shell.checkCollision(self.playerGroup[0]):
+                self.shell[1] = 0
+                self.Players[0].setPosition((0, int(self.__height / 2)))
+                self.p1_lives -= 1
+                self.createGroups()
+            self.checkShellDestroy(Shell, 1)
+            self.checkShellDestroy(Shell, 2)
 
     # Check if the player wins
     def checkVictory(self):
-        # If you touch the princess or reach the floor with the princess you
-        # win!
-        if self.Players[0].checkCollision(self.allyGroup) or self.Players[
-                0].getPosition()[1] < 4 * 15:
-
-            self.score += self.rewards["win"]
-
-            # This is just the next level so we only clear the fireballs and
-            # regenerate the coins
-            self.Fireballs = []
-            self.Players[0].setPosition((50, 440))
-            self.Coins = []
-            self.GenerateCoins()
-
-            # Add monsters
-            if len(self.Enemies) == 1:
-                self.Enemies.append(
-                    MonsterPerson(
-                        self.IMAGES["monster0"], (700, 117), self.rng, self._dir))
-            elif len(self.Enemies) == 2:
-                self.Enemies.append(
-                    MonsterPerson(
-                        self.IMAGES["monster0"], (400, 117), self.rng, self._dir))
-            # Create the groups again so the enemies are effected
-            self.createGroups()
+        if self.p1_lives <= 0:
+            print("Player 2 (right) wins!")
+        if self.p2_lives <= 0:
+            print("Player 1 (left) wins!")    
+        self.resetGroups()
 
     # Redraws the entire game screen
     def redrawScreen(self, screen, width, height):
-        screen.fill((40, 20, 0))  # Fill it with black
+        #screen.blit(self.background_image, (0, 0))
+        #self.backdrop.draw_background(self.screen) 
+        screen.fill((130, 90, 60))  # Fill it with brown
         # Draw all our groups on the background
-        self.ladderGroup.draw(screen)
+        self.shellGroup.draw(screen)
         self.playerGroup.draw(screen)
-        self.coinGroup.draw(screen)
         self.wallGroup.draw(screen)
-        self.fireballGroup.draw(screen)
-        self.enemyGroup.draw(screen)
-        self.allyGroup.draw(screen)
+        self.livesGroup.draw(screen)
+        self.heartsGroup.draw(screen)
 
     # Update all the groups from their corresponding lists
     def createGroups(self):
-        self.fireballGroup = pygame.sprite.RenderPlain(self.Fireballs)
+        self.shellGroup = pygame.sprite.RenderPlain(self.Shells)
         self.playerGroup = pygame.sprite.RenderPlain(self.Players)
-        self.enemyGroup = pygame.sprite.RenderPlain(self.Enemies)
         self.wallGroup = pygame.sprite.RenderPlain(self.Walls)
-        self.ladderGroup = pygame.sprite.RenderPlain(self.Ladders)
-        self.coinGroup = pygame.sprite.RenderPlain(self.Coins)
-        self.allyGroup = pygame.sprite.RenderPlain(self.Allies)
-        self.fireballEndpointsGroup = pygame.sprite.RenderPlain(
-            self.FireballEndpoints)
+        self.livesGroup = pygame.sprite.RenderPlain(self.Lives)
+        self.heartsGroup = pygame.sprite.RenderPlain(self.Hearts)
 
     '''
-    Initialize the game by making the map, generating walls, generating princess chamber, generating ladders randomly,
-    generating broken ladders randomly, generating holes, generating coins randomly, adding the ladders and walls to our lists
-    and finally updating the groups.
+    Initialize the game by making the map, generating walls, and updating the groups.
     '''
-
     def initializeGame(self):
         self.makeMap()
         self.makeWalls()
-        self.makePrincessChamber()
-        self.makeLadders()
-        self.makeHoles()
-        self.GenerateCoins()
+        self.makeHearts()
         self.populateMap()
         self.createGroups()
