@@ -169,7 +169,7 @@ class Board(object):
     # Update all the shell positions and check for collisions with players
     def shellCheck(self):
         for i in range(len(self.shellGroup)):
-            self.shellGroup[i].continuousUpdate(self.wallGroup)
+            self.shellGroup[i].continuousUpdate(self.wallGroup, self.playerGroup)
             if i == 0 and shell.checkCollision(self.playerGroup[1]):
                 self.shell[0] = 0
                 self.Players[1].setPosition((self.__width - 32, int(self.__height / 2)))
