@@ -111,7 +111,7 @@ class TanksBattleRoyale(PyGameWrapper):
                         self.newGame.Players[0].update(self.IMAGES["tank_down2"], self.newGame.p1_dir, self.newGame.Players[0].getSpeed(), 32, 32)    
                     self.wallsCollidedExact = self.newGame.Players[0].checkCollision(self.wallGroup)
                     # If we have collided with a wall, move the player back to where it was in the last state
-                    if self.wallsCollideExact:
+                    if self.wallsCollidedExact:
                         self.newGame.Players[0].update(self.IMAGES["tank_down1"], self.newGame.p1_dir, -self.newGame.Players[0].getSpeed(), 32, 32)
                 # To check p1 collisions above, we move the player upwards then check
                 # and move them back to their original location
