@@ -28,16 +28,15 @@ class Board(object):
         self.p2_dir = 3 # player2 is on the right, facing left
 
         self.IMAGES = {
-            "tank_left1": pygame.image.load(os.path.join(_dir, 'assets/tank_left1.png')).convert_alpha(),
-            "tank_right1": pygame.image.load(os.path.join(_dir, 'assets/tank_right1.png')).convert_alpha(),
-            "wood_block": pygame.image.load(os.path.join(_dir, 'assets/wood_block.png')).convert_alpha(),
-            "lives": pygame.image.load(os.path.join(_dir, 'assets/lives.png')).convert_alpha(),
-            "heart": pygame.image.load(os.path.join(_dir, 'assets/heart.png')).convert_alpha(),
-            "shell_right2": pygame.image.load(os.path.join(_dir, 'assets/shell_right2.png')).convert_alpha(),
-            "shell_left2": pygame.image.load(os.path.join(_dir, 'assets/shell_left2.png')).convert_alpha(),
-            "shell_up2": pygame.image.load(os.path.join(_dir, 'assets/shell_up2.png')).convert_alpha(),
-            "shell_down2": pygame.image.load(os.path.join(_dir, 'assets/shell_down2.png')).convert_alpha(),
-            "shell_down2": pygame.image.load(os.path.join(_dir, 'assets/shell_down2.png')).convert_alpha()
+            "tank_left1": pygame.image.load(os.path.join(self.p1_dir, 'assets/tank_left1.png')).convert_alpha(),
+            "tank_right1": pygame.image.load(os.path.join(self.p2_dir, 'assets/tank_right1.png')).convert_alpha(),
+            "wood_block": pygame.image.load(os.path.join(0, 'assets/wood_block.png')).convert_alpha(),
+            "lives": pygame.image.load(os.path.join(0, 'assets/lives.png')).convert_alpha(),
+            "heart": pygame.image.load(os.path.join(0, 'assets/heart.png')).convert_alpha(),
+            "shell_right2": pygame.image.load(os.path.join(1, 'assets/shell_right2.png')).convert_alpha(),
+            "shell_left2": pygame.image.load(os.path.join(3, 'assets/shell_left2.png')).convert_alpha(),
+            "shell_up2": pygame.image.load(os.path.join(0, 'assets/shell_up2.png')).convert_alpha(),
+            "shell_down2": pygame.image.load(os.path.join(2, 'assets/shell_down2.png')).convert_alpha()
         }
 
         self.white = (255, 255, 255)
@@ -75,17 +74,17 @@ class Board(object):
         self.Walls = []
         self.Shells = []
         self.Lives = [
-            Wall(self.IMAGES[lives], (0, 0)), # For player1
-            Wall(self.IMAGES[lives], (self.__width - 128, 0)) # For player2
+            Wall(self.IMAGES["lives"], (0, 0)), # For player1
+            Wall(self.IMAGES["lives"], (self.__width - 128, 0)) # For player2
         ]
         #for playa in self.Lives: playa.modifySize(self.IMAGES[lives], 32, 96)
         self.Hearts = [
-            Wall(self.IMAGES[heart], (32, 0)), # player1 life1
-            Wall(self.IMAGES[heart], (64, 0)), # player1 life2
-            Wall(self.IMAGES[heart], (96, 0)), # player1 life3
-            Wall(self.IMAGES[heart], (self.__width - 32, 0)), # player2 life1
-            Wall(self.IMAGES[heart], (self.__width - 64, 0)), # player2 life2
-            Wall(self.IMAGES[heart], (self.__width - 96, 0)) # player2 life3
+            Wall(self.IMAGES["heart"], (32, 0)), # player1 life1
+            Wall(self.IMAGES["heart"], (64, 0)), # player1 life2
+            Wall(self.IMAGES["heart"], (96, 0)), # player1 life3
+            Wall(self.IMAGES["heart"], (self.__width - 32, 0)), # player2 life1
+            Wall(self.IMAGES["heart"], (self.__width - 64, 0)), # player2 life2
+            Wall(self.IMAGES["heart"], (self.__width - 96, 0)) # player2 life3
         ]
         self.initializeGame()  # This initializes the game and generates our map
         self.createGroups()  # This creates the instance groups
