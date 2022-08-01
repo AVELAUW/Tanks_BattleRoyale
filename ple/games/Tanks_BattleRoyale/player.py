@@ -8,7 +8,7 @@ We specialize the person by adding capabilities such as jump etc..
 '''
 
 
-class Player(Person):
+class Player1(Person):
 
     def __init__(self, raw_image, position, width, height):
         super(Player, self).__init__(raw_image, position, width, height)
