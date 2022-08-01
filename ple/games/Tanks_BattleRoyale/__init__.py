@@ -78,6 +78,9 @@ class TanksBattleRoyale(PyGameWrapper):
 
     def game_over(self):
         return (self.newGame.p1_lives <= 0 or self.newGame.p2_lives <= 0)
+    
+    #def getGameState(self):
+        # implement this
 
     def step(self, dt):
         # This is where the game is run
