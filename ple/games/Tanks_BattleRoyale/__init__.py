@@ -259,18 +259,8 @@ class TanksBattleRoyale(PyGameWrapper):
         # Redraws all our instances onto the screen
         self.newGame.redrawScreen(self.screen, self.width, self.height)
 
-        # Update the fireball and check for collisions with player (ie Kill the
-        # player)
-        self.newGame.fireballCheck()
+        # Update the shell and check for collisions with the other player
+        self.newGame.shellCheck()
 
-        # Collect a coin
-        coinsCollected = pygame.sprite.spritecollide(
-            self.newGame.Players[0], self.coinGroup, True)
-        self.newGame.coinCheck(coinsCollected)
-
-        # Check if you have reached the princess
+        # Check if one player has defeated the other
         self.newGame.checkVictory()
-
-        # Update all the monsters
-        for enemy in self.newGame.Enemies:
-            enemy.continuousUpdate(self.wallGroup, self.ladderGroup)
