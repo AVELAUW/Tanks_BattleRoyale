@@ -16,17 +16,18 @@ class Board(object):
     The generation of the level also happens in this class.
     '''
 
-    def __init__(self, width, height, value, lives):
+    def __init__(self, width, height, value, _dir):
         self.__width = width
         self.__height = height # + 10
         self.value = value # Shell speed
-        self.life = lives
+        self.life = 3
         self.p1_lives = self.life
         self.p2_lives = self.life
         self.cycles = 0 # For the tank animations
         self.p1_dir = 1 # player1 is on the left, facing right
         self.p2_dir = 3 # player2 is on the right, facing left
         
+        #self._dir = _dir
         self._dir = os.path.dirname(os.path.abspath(__file__))
         self.IMAGES = {
             "tank_left1": pygame.image.load(os.path.join(self._dir, 'assets/tank_left1.png')).convert_alpha(),
