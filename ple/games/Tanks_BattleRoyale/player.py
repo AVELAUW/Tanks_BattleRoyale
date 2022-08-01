@@ -20,5 +20,6 @@ class Player(Person):
         return self.__speed
 
     # The tank does not move without an event
-    def continuousUpdate(self, colliderGroup):
-        return "sitting still"
+    def continuousUpdate(self):
+        print("sitting still")
+        return none
