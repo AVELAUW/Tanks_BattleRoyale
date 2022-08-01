@@ -124,12 +124,12 @@ class Board(object):
     
     # Remove a heart if the player has lost their life
     def RemoveHeart(self, playerIndex):
-        if playerIndex = 1:
+        if playerIndex == 1:
             self.p1_lives -= 1
             self.Hearts[0:3] = 0
             for i in range (0, self.p1_lives):
                 self.Hearts[i] = 5 # a heart
-        if playerIndex = 2:
+        if playerIndex == 2:
             self.p2_lives -= 1
             self.Hearts[3:6] = 0
             for i in range (3, self.p1_lives):
