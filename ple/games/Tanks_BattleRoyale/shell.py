@@ -51,25 +51,25 @@ class Shell(Environment):
             self.update(self.IMAGES["shell_up1"], self.__speed)
             # When we hit a wall, we explode
             if self.checkCollision(wallGroup):
-                self.update(self.IMAGES["shell_up2"], 0)
+                self.update(self.IMAGES["boom3"], 0)
         # We are moving RIGHT, so update the shell's image to the right        
         if self.__direction == 1:
             self.update(self.IMAGES["shell_right1"], self.__speed)
             # When we hit a wall, we explode
             if self.checkCollision(wallGroup):
-                self.update(self.IMAGES["shell_right2"], 0)
+                self.update(self.IMAGES["boom3"], 0)
         # We are moving DOWN, so update the shell's image downards        
         if self.__direction == 2:
             self.update(self.IMAGES["shell_down1"], self.__speed)
             # When we hit a wall, we explode
             if self.checkCollision(wallGroup):
-                self.update(self.IMAGES["shell_down2"], 0)
+                self.update(self.IMAGES["boom3"], 0)
         # We are moving LEFT, so update the shell's image to the left
         if self.__direction == 3:
             self.update(self.IMAGES["shell_left1"], self.__speed)
             # When we hit a wall, we explode
             if self.checkCollision(wallGroup):
-                self.update(self.IMAGES["shell_left2"], 0)
+                self.update(self.IMAGES["boom3"], 0)
 
     # Move the shell in the required direction with the required speed (value), then set its image
     def update(self, raw_image, value):
