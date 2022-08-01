@@ -19,7 +19,6 @@ class Player(Person):
     def setSpeed(self):
         return self.__speed
 
-    # Same function as person's checkCollision()
+    # The tank does not move without an event
     def continuousUpdate(self, colliderGroup):
-        Colliders = pygame.sprite.spritecollide(self, colliderGroup, False)
-        return Colliders
+        return "sitting still"
