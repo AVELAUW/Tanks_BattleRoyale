@@ -171,7 +171,7 @@ class Board(object):
                 elif self.map[x][y] == 5:
                     # Add the hearts at their position
                     print(hearts)
-                    print(len(self.Hearts))
+                    print(self.Hearts)
                     self.Hearts[hearts] = Environment(self.IMAGES["hearts"],(x * 32, y * 32))
                     hearts += 1
 
