@@ -1,4 +1,4 @@
-from onBoard import OnBoard
+from environment import Environment
 import pygame
 
 '''
