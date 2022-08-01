@@ -75,15 +75,18 @@ class Board(object):
         self.Walls = []
         self.Shells = []
         self.Lives = [
-            Wall(self.IMAGES[lives], 32, 0, 32, 32]), # For player1
-            Wall(self.IMAGES[lives], self.__width - 32, 0, 32, 32]) # For player2
+            Wall(self.IMAGES[lives], (0, 0)), # For player1
+            Wall(self.IMAGES[lives], (self.__width - 128, 0)) # For player2
+        ]
+        #for playa in self.Lives: playa.modifySize(self.IMAGES[lives], 32, 96)
         self.Hearts = [
-            Wall(self.IMAGES[lives], 32, 0, 32, 32), # player1 life1
-            Wall(self.IMAGES[lives], 64, 0, 32, 32), # player1 life2
-            Wall(self.IMAGES[lives], 96, 0, 32, 32]), # player1 life3
-            Wall(self.IMAGES[lives], self.__width - 64, 0, 32, 32]), # player2 life1
-            Wall(self.IMAGES[lives], self.__width - 96, 0, 32, 32]), # player2 life2
-            Wall(self.IMAGES[lives], self.__width - 128, 0, 32, 32]) # player2 life3
+            Wall(self.IMAGES[heart], (32, 0)), # player1 life1
+            Wall(self.IMAGES[heart], (64, 0)), # player1 life2
+            Wall(self.IMAGES[heart], (96, 0)), # player1 life3
+            Wall(self.IMAGES[heart], (self.__width - 32, 0)), # player2 life1
+            Wall(self.IMAGES[heart], (self.__width - 64, 0)), # player2 life2
+            Wall(self.IMAGES[heart], (self.__width - 96, 0)) # player2 life3
+        ]
         self.initializeGame()  # This initializes the game and generates our map
         self.createGroups()  # This creates the instance groups
 
