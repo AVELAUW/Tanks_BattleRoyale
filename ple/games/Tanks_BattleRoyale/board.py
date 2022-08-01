@@ -172,6 +172,7 @@ class Board(object):
                     # Add the hearts at their position
                     print(hearts)
                     print(self.Hearts)
+                    print(self.Hearts[0])
                     self.Hearts[hearts] = Environment(self.IMAGES["hearts"],(x * 32, y * 32))
                     hearts += 1
 
