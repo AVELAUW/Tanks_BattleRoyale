@@ -87,9 +87,9 @@ class Board(object):
         self.initializeGame()  # This initializes the game and generates our map
         self.createGroups()  # This creates the instance groups
 
-    # Checks to destroy a shell when it reaches its terminal point
+    # Checks to destroy a shell when it hits a walll or person
     def checkShellDestroy(self, shell, index):
-        if pygame.sprite.spritecollide(shell, self.playerGroup[index-1], False):
+        if pygame.sprite.spritecollide(shell, self.playerGroup[index-1], False) or pygame.sprite.spritecollide(shell, self.wallGroup, False):
             # We can use indices on shells to uniquely identify each shell
             self.DestroyShell(index)
 
