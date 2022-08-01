@@ -241,9 +241,9 @@ class TanksBattleRoyale(PyGameWrapper):
                 if event.key == self.actions["p2_fire"]:
                     self.newGame.CreateShell(self.newGame.Players[1].getPosition(), self.p1_dir, self.newGame.Players[1].index)
 
-        # Update the player's position
-        p1_movement = self.newGame.Players[0].continuousUpdate()
-        p2_movement = self.newGame.Players[1].continuousUpdate()
+        # Update the player's position & animation
+        #p1_movement = self.newGame.Players[0].continuousUpdate()
+        #p2_movement = self.newGame.Players[1].continuousUpdate()
 
         '''
         We use cycles to animate the character, when we change direction we also reset the cycles
