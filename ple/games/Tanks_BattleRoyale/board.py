@@ -102,16 +102,16 @@ class Board(object):
         if self.Shells[playerIndex-1] == None:
             if direction == 0: # UP
                 self.Shells[playerIndex-1] = Shell(self.IMAGES["shell_up2"], (location[0], location[1]-32), self.value, direction)
-                self.Shells[playerIndex-1].updateImage(self.IMAGES["shell_up2"]):
+                self.Shells[playerIndex-1].updateImage(self.IMAGES["shell_up2"])
             if direction == 1: # RIGHT
                 self.Shells[playerIndex-1] = Shell(self.IMAGES["shell_right2"], (location[0]+32, location[1]), self.value, direction)
-                self.Shells[playerIndex-1].updateImage(self.IMAGES["shell_right2"]):
+                self.Shells[playerIndex-1].updateImage(self.IMAGES["shell_right2"])
             if direction == 2: # DOWN
                 self.Shells[playerIndex-1] = Shell(self.IMAGES["shell_down2"], (location[0], location[1]+32), self.value, direction)
-                self.Shells[playerIndex-1].updateImage(self.IMAGES["shell_down2"]):
+                self.Shells[playerIndex-1].updateImage(self.IMAGES["shell_down2"])
             if direction == 3: # LEFT
                 self.Shells[playerIndex-1] = Shell(self.IMAGES["shell_left2"], (location[0]-32, location[1]), self.value, direction)
-                self.Shells[playerIndex-1].updateImage(self.IMAGES["shell_left2"]):
+                self.Shells[playerIndex-1].updateImage(self.IMAGES["shell_left2"])
             self.createGroups()  # We recreate the groups so the shell is added
             
     # Destroy a shell if it has collided with a player or hit a wall
