@@ -10,7 +10,7 @@ import numpy as np
 import os
 
 
-class MonsterKong(PyGameWrapper):
+class TanksBattleRoyale(PyGameWrapper):
 
     def __init__(self):
         """
