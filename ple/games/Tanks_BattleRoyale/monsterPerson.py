@@ -9,7 +9,7 @@ Each Monster can only move on the top floor and cannot move vertically.
 '''
 
 
-class MonsterPerson(Person):
+class Player2(Person):
 
     def __init__(self, raw_image, position, rng, dir, width=15, height=15):
         super(MonsterPerson, self).__init__(raw_image, position, width, height)
