@@ -55,7 +55,6 @@ class TanksBattleRoyale(PyGameWrapper):
 
     def init(self):
         # Create a new instance of the Board class
-        print("init", self.lives)
         self.newGame = Board(
             self.width,
             self.height,
@@ -77,7 +76,6 @@ class TanksBattleRoyale(PyGameWrapper):
         return 21 # error
 
     def game_over(self):
-        print(self.newGame.p1_lives, self.newGame.p2_lives)
         return (self.newGame.p1_lives <= 0 or self.newGame.p2_lives <= 0)
     
     #def getGameState(self):
@@ -130,7 +128,7 @@ class TanksBattleRoyale(PyGameWrapper):
                         self.newGame.Players[0].update(self.IMAGES["tank_up2"], self.newGame.p1_dir, self.newGame.Players[0].getSpeed(), 32, 32)    
                     self.wallsCollidedExact = self.newGame.Players[0].checkCollision(self.wallGroup)
                     # If we have collided with a wall, move the player back to where it was in the last state
-                    if self.wallsCollideExact:
+                    if self.wallsCollidedExact:
                         self.newGame.Players[0].update(self.IMAGES["tank_up1"], self.newGame.p1_dir, -self.newGame.Players[0].getSpeed(), 32, 32)
                 # To check p1 collisions right, we move the player to the right, check for collisions,
                 # then move them back to their original location
@@ -147,7 +145,7 @@ class TanksBattleRoyale(PyGameWrapper):
                         self.newGame.Players[0].update(self.IMAGES["tank_right2"], self.newGame.p1_dir, self.newGame.Players[0].getSpeed(), 32, 32)    
                     self.wallsCollidedExact = self.newGame.Players[0].checkCollision(self.wallGroup)
                     # If we have collided with a wall, move the player back to where it was in the last state
-                    if self.wallsCollideExact:
+                    if self.wallsCollidedExact:
                         self.newGame.Players[0].update(self.IMAGES["tank_right1"], self.newGame.p1_dir, -self.newGame.Players[0].getSpeed(), 32, 32)
                 # To check p1 collisions left, we move the player to the left, check for collisions,
                 # then move them back to their original location
@@ -164,7 +162,7 @@ class TanksBattleRoyale(PyGameWrapper):
                         self.newGame.Players[0].update(self.IMAGES["tank_left2"], self.newGame.p1_dir, self.newGame.Players[0].getSpeed(), 32, 32)    
                     self.wallsCollidedExact = self.newGame.Players[0].checkCollision(self.wallGroup)
                     # If we have collided with a wall, move the player back to where it was in the last state
-                    if self.wallsCollideExact:
+                    if self.wallsCollidedExact:
                         self.newGame.Players[0].update(self.IMAGES["tank_left1"], self.newGame.p1_dir, -self.newGame.Players[0].getSpeed(), 32, 32)
                         
                 # To check p2 collisions below, we move the player downwards then check
@@ -182,7 +180,7 @@ class TanksBattleRoyale(PyGameWrapper):
                         self.newGame.Players[1].update(self.IMAGES["tank_down2"], self.newGame.p1_dir, self.newGame.Players[1].getSpeed(), 32, 32)    
                     self.wallsCollidedExact = self.newGame.Players[1].checkCollision(self.wallGroup)
                     # If we have collided with a wall, move the player back to where it was in the last state
-                    if self.wallsCollideExact:
+                    if self.wallsCollidedExact:
                         self.newGame.Players[1].update(self.IMAGES["tank_down1"], self.newGame.p1_dir, -self.newGame.Players[1].getSpeed(), 32, 32)
                 # To check p2 collisions above, we move the player upwards then check
                 # and move them back to their original location
@@ -199,7 +197,7 @@ class TanksBattleRoyale(PyGameWrapper):
                         self.newGame.Players[1].update(self.IMAGES["tank_up2"], self.newGame.p1_dir, self.newGame.Players[1].getSpeed(), 32, 32)    
                     self.wallsCollidedExact = self.newGame.Players[1].checkCollision(self.wallGroup)
                     # If we have collided with a wall, move the player back to where it was in the last state
-                    if self.wallsCollideExact:
+                    if self.wallsCollidedExact:
                         self.newGame.Players[1].update(self.IMAGES["tank_up1"], self.newGame.p1_dir, -self.newGame.Players[1].getSpeed(), 32, 32)
                 # To check p2 collisions right, we move the player to the right, check for collisions,
                 # then move them back to their original location
@@ -216,7 +214,7 @@ class TanksBattleRoyale(PyGameWrapper):
                         self.newGame.Players[1].update(self.IMAGES["tank_right2"], self.newGame.p1_dir, self.newGame.Players[1].getSpeed(), 32, 32)    
                     self.wallsCollidedExact = self.newGame.Players[1].checkCollision(self.wallGroup)
                     # If we have collided with a wall, move the player back to where it was in the last state
-                    if self.wallsCollideExact:
+                    if self.wallsCollidedExact:
                         self.newGame.Players[1].update(self.IMAGES["tank_right1"], self.newGame.p1_dir, -self.newGame.Players[1].getSpeed(), 32, 32)
                 # To check p2 collisions left, we move the player to the left, check for collisions,
                 # then move them back to their original location
@@ -233,7 +231,7 @@ class TanksBattleRoyale(PyGameWrapper):
                         self.newGame.Players[1].update(self.IMAGES["tank_left2"], self.newGame.p1_dir, self.newGame.Players[1].getSpeed(), 32, 32)    
                     self.wallsCollidedExact = self.newGame.Players[1].checkCollision(self.wallGroup)
                     # If we have collided with a wall, move the player back to where it was in the last state
-                    if self.wallsCollideExact:
+                    if self.wallsCollidedExact:
                         self.newGame.Players[1].update(self.IMAGES["tank_left1"], self.newGame.p1_dir, -self.newGame.Players[1].getSpeed(), 32, 32)
                 
                 # Check if p1 has fired a shell
@@ -245,9 +243,7 @@ class TanksBattleRoyale(PyGameWrapper):
 
         # Update the player's position
         p1_movement = self.newGame.Players[0].continuousUpdate()
-        print(p1_movement)
         p2_movement = self.newGame.Players[1].continuousUpdate()
-        print(p2_movement)
 
         '''
         We use cycles to animate the character, when we change direction we also reset the cycles
