@@ -11,7 +11,7 @@ We specialize the person by adding capabilities such as jump etc..
 class Player1(Person):
 
     def __init__(self, raw_image, position, width, height):
-        super(Player, self).__init__(raw_image, position, width, height)
+        super(Player1, self).__init__(raw_image, position, width, height)
         self.isJumping = 0
         self.onLadder = 0
         self.currentJumpSpeed = 0
