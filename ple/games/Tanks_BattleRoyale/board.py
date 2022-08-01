@@ -155,7 +155,7 @@ class Board(object):
     def makeHearts(self):
         for i in range(3):
             self.map[0][i] = self.map[0][i] = 5
-            self.map[0][int(self.__width / 32) - 1 - j] = self.map[0][int(self.__width / 32) - 1 - i] = 5
+            self.map[0][int(self.__width / 32) - 1 - i] = self.map[0][int(self.__width / 32) - 1 - i] = 5
 
     '''
     This is called once you have finished making the game field
