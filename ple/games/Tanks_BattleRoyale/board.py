@@ -167,10 +167,10 @@ class Board(object):
             for y in range(len(self.map[x])):
                 if self.map[x][y] == 1:
                     # Add a wall at that position
-                    self.Walls.append(OnBoard(self.IMAGES["wood_block"],(x * 32, y * 32)))
+                    self.Walls.append(Environment(self.IMAGES["wood_block"],(x * 32, y * 32)))
                 elif self.map[x][y] == 5:
                     # Add the hearts at their position
-                    self.Hearts[hearts] = OnBoard(self.IMAGES["hearts"],(x * 32, y * 32))
+                    self.Hearts[hearts] = Environment(self.IMAGES["hearts"],(x * 32, y * 32))
                     hearts += 1
 
     # Update all the shell positions and check for collisions with players
