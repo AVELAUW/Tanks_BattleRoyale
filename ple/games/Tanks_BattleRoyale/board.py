@@ -147,15 +147,15 @@ class Board(object):
     # Add walls to our map
     def makeWalls(self):
         for i in range(int(self.__height / 32)):
-            self.map[i][0] = self.map[i][int(self.__width / 32)] = 1
+            self.map[i][0] = self.map[i][int(self.__width / 32)-1] = 1
         for j in range(int(self.__width / 32)):
-            self.map[0][j] = self.map[int(self.__width / 32)][j] = 1
+            self.map[0][j] = self.map[int(self.__width / 32)-1][j] = 1
     
     # Add hearts to our map
     def makeHearts(self):
         for i in range(3):
             self.map[0][i] = self.map[0][i] = 5
-            self.map[0][int(self.__width / 32) - j - 1] = self.map[0][int(self.__width / 32) - i - 1] = 5
+            self.map[0][int(self.__width / 32) - 1 - j] = self.map[0][int(self.__width / 32) - 1 - i] = 5
 
     '''
     This is called once you have finished making the game field
