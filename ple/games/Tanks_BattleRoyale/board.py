@@ -1,43 +1,38 @@
-__author__ = 'Batchu Vishal'
 import pygame
 import math
 import sys
 import os
 
 from .person import Person
-from .onBoard import OnBoard
-from .coin import Coin
-from .player import Player
-from .fireball import Fireball
-from .monsterPerson import MonsterPerson
-
+from .environment import Environment
+from .player1 import Player1
+from .player2 import Player2
+from .shell import Shell
+from .wall import Wall
 
 class Board(object):
     '''
     This class defines our gameboard.
-    A gameboard contains everthing related to our game on it like our characters, walls, ladders, coins etc
+    A gameboard contains everthing related to our game, like the tanks, shells, walls, etc.
     The generation of the level also happens in this class.
     '''
 
-    def __init__(self, width, height, rewards, rng, _dir):
+    def __init__(self, width, height, rewards, _dir, lives):
         self.__width = width
         self.__actHeight = height
         self.__height = self.__actHeight + 10
-        self.score = 0
-        self.rng = rng
+        self.p1_lives = lives
+        self.p2_lives = lives
         self.rewards = rewards
-        self.cycles = 0  # For the characters animation
-        self.direction = 0
-        self._dir = _dir
+        self.cycles = 0 # For the tank animations
+        self.p1_dir = 1 # player1 is on the left, facing right
+        self.p2_dir = 3 # player2 is on the right, facing left
 
         self.IMAGES = {
-            "still": pygame.image.load(os.path.join(_dir, 'assets/still.png')).convert_alpha(),
-            "monster0": pygame.image.load(os.path.join(_dir, 'assets/monster0.png')).convert_alpha(),
-            "princess": pygame.image.load(os.path.join(_dir, 'assets/princess.png')).convert_alpha(),
-            "fireballright": pygame.image.load(os.path.join(_dir, 'assets/fireballright.png')).convert_alpha(),
-            "coin1": pygame.image.load(os.path.join(_dir, 'assets/coin1.png')).convert_alpha(),
+            "tank_left1": pygame.image.load(os.path.join(_dir, 'assets/tank_left1.png')).convert_alpha(),
+            "tank_right1": pygame.image.load(os.path.join(_dir, 'assets/tank_right1.png')).convert_alpha(),
             "wood_block": pygame.image.load(os.path.join(_dir, 'assets/wood_block.png')).convert_alpha(),
-            "ladder": pygame.image.load(os.path.join(_dir, 'assets/ladder.png')).convert_alpha()
+            "heart": pygame.image.load(os.path.join(_dir, 'assets/heart.png')).convert_alpha()
         }
 
         self.white = (255, 255, 255)
