@@ -1,8 +1,7 @@
-__author__ = 'Batchu Vishal'
 import pygame
 
 '''
-This class defines all living things in the game, ex.Donkey Kong, Player etc
+This class defines all of the 'living' objects in the game (e.g. player1 and player2)
 Each of these objects can move in any direction specified.
 '''
 
