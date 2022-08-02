@@ -62,7 +62,7 @@ class Shell(Environment):
         if self.__direction == 3:
             self.update(self.IMAGES["shell_left1"], self.__speed)
         # When we hit a wall or player, we explode
-        if self.checkCollision(wallGroup, playerGroup):
+        if self.checkCollision(wallGroup) or self.checkCollision(playerGroup):
             self.update(self.IMAGES["boom3"], 0)
 
     # Move the shell in the required direction with the required speed (value), then set its image
