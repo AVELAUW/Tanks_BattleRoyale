@@ -41,7 +41,8 @@ class Board(object):
             "shell_right2": pygame.image.load(os.path.join(self._dir, 'assets/shell_right2.png')).convert_alpha(),
             "shell_left2": pygame.image.load(os.path.join(self._dir, 'assets/shell_left2.png')).convert_alpha(),
             "shell_up2": pygame.image.load(os.path.join(self._dir, 'assets/shell_up_2.png')).convert_alpha(),
-            "shell_down2": pygame.image.load(os.path.join(self._dir, 'assets/shell_down2.png')).convert_alpha()
+            "shell_down2": pygame.image.load(os.path.join(self._dir, 'assets/shell_down2.png')).convert_alpha(),
+            "boom3": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/boom3.png')), (16, 16)).convert_alpha()
         }
 
         self.white = (255, 255, 255)
@@ -94,6 +95,7 @@ class Board(object):
     # Checks to destroy a shell when it hits a walll or person
     def checkShellDestroy(self, shell):
         if pygame.sprite.spritecollide(shell, self.playerGroup, False) or pygame.sprite.spritecollide(shell, self.wallGroup, False):
+            shell.updateImage(self.IMAGES["boom3"])
             # We can use indices on shells to uniquely identify each shell
             self.DestroyShell(shell.index)
 
