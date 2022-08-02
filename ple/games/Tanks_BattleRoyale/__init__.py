@@ -43,12 +43,12 @@ class TanksBattleRoyale(PyGameWrapper):
         self.allowed_fps = 30
         self._dir = os.path.dirname(os.path.abspath(__file__))
         self.IMAGES = {
-            "tank_down1": pygame.image.load(os.path.join(self._dir, 'assets/tank_down1.png')),
-            "tank_down2": pygame.image.load(os.path.join(self._dir, 'assets/tank_down2.png')),
-            "tank_left1": pygame.image.load(os.path.join(self._dir, 'assets/tank_left1.png')),
-            "tank_left2": pygame.image.load(os.path.join(self._dir, 'assets/tank_left2.png')),
-            "tank_right1": pygame.image.load(os.path.join(self._dir, 'assets/tank_right1.png')),
-            "tank_right2": pygame.image.load(os.path.join(self._dir, 'assets/tank_right2.png')),
+            "tank_down1": pygame.image.load(os.path.join(self._dir, 'assets/tank_down_1.png')),
+            "tank_down2": pygame.image.load(os.path.join(self._dir, 'assets/tank_down_2.png')),
+            "tank_left1": pygame.image.load(os.path.join(self._dir, 'assets/tank_left_1.png')),
+            "tank_left2": pygame.image.load(os.path.join(self._dir, 'assets/tank_left_2.png')),
+            "tank_right1": pygame.image.load(os.path.join(self._dir, 'assets/tank_right_1.png')),
+            "tank_right2": pygame.image.load(os.path.join(self._dir, 'assets/tank_right_2.png')),
             "tank_up1": pygame.image.load(os.path.join(self._dir, 'assets/tank_up1.png')),
             "tank_up2": pygame.image.load(os.path.join(self._dir, 'assets/tank_up2.png'))
         }
