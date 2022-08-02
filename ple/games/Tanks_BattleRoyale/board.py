@@ -73,7 +73,8 @@ class Board(object):
             Player(self.IMAGES["tank_right1"], (0, int(self.__height / 2)), 32, 32, 1),
             Player(self.IMAGES["tank_left1"], (self.__width - 32, int(self.__height / 2)), 32, 32, 2)]
         self.Walls = []
-        self.Shells = []
+        self.Shells = [None] * 2
+        self.Hearts = [None] * 6
         self.Lives = [
             Wall(self.IMAGES["lives"], (0, 0)), # For player1
             Wall(self.IMAGES["lives"], (self.__width - 128, 0)) # For player2
