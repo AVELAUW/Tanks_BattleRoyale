@@ -56,11 +56,11 @@ class Board(object):
         self.resetGroups()
 
         # Initialize the instance groups which we use to display our instances on the screen
-        self.shellGroup = pygame.sprite.RenderPlain(self.Shells)
-        self.playerGroup = pygame.sprite.RenderPlain(self.Players)
+        self.shellGroup = pygame.sprite.RenderPlain(list(self.Shells))
+        self.playerGroup = pygame.sprite.RenderPlain(list(self.Players))
         self.wallGroup = pygame.sprite.RenderPlain(self.Walls)
-        self.livesGroup = pygame.sprite.RenderPlain(self.Lives)
-        self.heartsGroup = pygame.sprite.RenderPlain(self.Hearts)
+        self.livesGroup = pygame.sprite.RenderPlain(list(self.Lives))
+        self.heartsGroup = pygame.sprite.RenderPlain(list(self.Hearts))
 
     def resetGroups(self):
         self.cycles = 0 # For the tank animations
@@ -218,11 +218,11 @@ class Board(object):
     # Update all the groups from their corresponding lists
     def createGroups(self):
         print(type(self.Walls))
-        self.shellGroup = pygame.sprite.RenderPlain(tuple(self.Shells))
-        self.playerGroup = pygame.sprite.RenderPlain(tuple(self.Players))
+        self.shellGroup = pygame.sprite.RenderPlain(list(self.Shells))
+        self.playerGroup = pygame.sprite.RenderPlain(list(self.Players))
         self.wallGroup = pygame.sprite.RenderPlain(self.Walls)
-        self.livesGroup = pygame.sprite.RenderPlain(tuple(self.Lives))
-        self.heartsGroup = pygame.sprite.RenderPlain(tuple(self.Hearts))
+        self.livesGroup = pygame.sprite.RenderPlain(list(self.Lives))
+        self.heartsGroup = pygame.sprite.RenderPlain(list(self.Hearts))
 
     '''
     Initialize the game by making the map, generating walls, and updating the groups.
