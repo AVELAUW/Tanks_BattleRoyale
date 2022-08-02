@@ -184,11 +184,13 @@ class Board(object):
                 self.shell[0] = 0
                 self.Players[1].setPosition((self.__width - 32, int(self.__height / 2)))
                 self.p2_lives -= 1
+                self.RemoveHeart(1):
                 self.createGroups()
             if i == 1 and shell.checkCollision(self.playerGroup[0]):
                 self.shell[1] = 0
                 self.Players[0].setPosition((0, int(self.__height / 2)))
                 self.p1_lives -= 1
+                self.RemoveHeart(0):
                 self.createGroups()
             self.checkShellDestroy(Shell, 1)
             self.checkShellDestroy(Shell, 2)
