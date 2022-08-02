@@ -217,6 +217,7 @@ class Board(object):
 
     # Update all the groups from their corresponding lists
     def createGroups(self):
+        print(type(self.Walls))
         self.shellGroup = pygame.sprite.RenderPlain(tuple(self.Shells))
         self.playerGroup = pygame.sprite.RenderPlain(tuple(self.Players))
         self.wallGroup = pygame.sprite.RenderPlain(self.Walls)
