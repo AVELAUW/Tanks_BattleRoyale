@@ -217,11 +217,11 @@ class Board(object):
 
     # Update all the groups from their corresponding lists
     def createGroups(self):
-        self.shellGroup = pygame.sprite.RenderPlain(self.Shells)
-        self.playerGroup = pygame.sprite.RenderPlain(self.Players)
+        self.shellGroup = pygame.sprite.RenderPlain(tuple(self.Shells))
+        self.playerGroup = pygame.sprite.RenderPlain(tuple(self.Players))
         self.wallGroup = pygame.sprite.RenderPlain(self.Walls)
-        self.livesGroup = pygame.sprite.RenderPlain(self.Lives)
-        self.heartsGroup = pygame.sprite.RenderPlain(self.Hearts)
+        self.livesGroup = pygame.sprite.RenderPlain(tuple(self.Lives))
+        self.heartsGroup = pygame.sprite.RenderPlain(tuple(self.Hearts))
 
     '''
     Initialize the game by making the map, generating walls, and updating the groups.
