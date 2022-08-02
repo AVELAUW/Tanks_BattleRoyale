@@ -101,7 +101,11 @@ class Board(object):
         # Check if player already has a shell on the board
         print(self.Shells)
         print(playerIndex)
-        if self.Shells[playerIndex-1] == None:
+        shoot = True
+        for shell in range(len(self.Shells)):
+            if self.Shells(shell).index == playerIndex:
+                shoot = False
+        if shoot:
             if direction == 0: # UP
                 self.Shells.append(Shell(self.IMAGES["shell_up2"], (location[0],location[1]-32), self.value, direction, playerIndex))
                 #self.Shells[?].updateImage(self.IMAGES["shell_up2"])                
@@ -213,7 +217,6 @@ class Board(object):
 
     # Update all the groups from their corresponding lists
     def createGroups(self):
-        print(type(self.Walls))
         self.shellGroup = pygame.sprite.RenderPlain(self.Shells)
         self.playerGroup = pygame.sprite.RenderPlain(self.Players)
         self.wallGroup = pygame.sprite.RenderPlain(self.Walls)
