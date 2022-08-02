@@ -19,7 +19,7 @@ class Board(object):
     def __init__(self, width, height, value, _dir):
         self.__width = width
         self.__height = height
-        self.adjust = 12
+        self.adjust = 14
         self.value = value # Shell speed
         self.life = 3
         self.p1_lives = self.life
@@ -74,13 +74,13 @@ class Board(object):
         self.p2_lives = self.life
         self.map = []  # We will create the map again when we reset the game
         self.Players = [
-            Player(self.IMAGES["tank_right1"], (32+self.adjust, int(self.__height / 2)-self.adjust), 32, 32, 1),
-            Player(self.IMAGES["tank_left1"], (self.__width - 64+self.adjust, int(self.__height / 2)-self.adjust), 32, 32, 2)]
+            Player(self.IMAGES["tank_right1"], (32+self.adjust, int(self.__height / 2)+self.adjust), 32, 32, 1),
+            Player(self.IMAGES["tank_left1"], (self.__width - 64+self.adjust, int(self.__height / 2)+self.adjust), 32, 32, 2)]
         self.Walls = []
         self.Shells = []
         self.Lives = [
             Wall(self.IMAGES["lives"], (32-self.adjust, 0+self.adjust), 41), # For player1
-            Wall(self.IMAGES["lives"], (self.__width - 128-self.adjust, self.adjust), 42)] # For player2
+            Wall(self.IMAGES["lives"], (self.__width - 128+self.adjust, self.adjust), 42)] # For player2
         #for playa in self.Lives: playa.modifySize(self.IMAGES[lives], 32, 96)
         self.Hearts = [
             Wall(self.IMAGES["heart"], (64-self.adjust, self.adjust), 511), # player1 life1
@@ -155,9 +155,11 @@ class Board(object):
     # Add walls to our map
     def makeWalls(self):
         for i in range(int(self.__height / 32)):
-            self.map[i][0] = self.map[i][int(self.__width / 32) - 1] = 1
+            self.map[i][0] = 1
+            self.map[i][int(self.__width / 32) - 1] = 1
         for j in range(int(self.__width / 32)):
-            self.map[0][j] = self.map[int(self.__width / 32) - 1][j] = 1
+            self.map[0][j] = 1
+            self.map[int(self.__width / 32) - 1][j] = 1
     
     # Add hearts to our map
     def makeHearts(self):
