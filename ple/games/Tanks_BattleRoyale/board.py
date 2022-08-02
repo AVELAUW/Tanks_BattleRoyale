@@ -19,7 +19,7 @@ class Board(object):
     def __init__(self, width, height, value, _dir):
         self.__width = width
         self.__height = height
-        self.adjust = 10
+        self.adjust = 12
         self.value = value # Shell speed
         self.life = 3
         self.p1_lives = self.life
@@ -74,8 +74,8 @@ class Board(object):
         self.p2_lives = self.life
         self.map = []  # We will create the map again when we reset the game
         self.Players = [
-            Player(self.IMAGES["tank_right1"], (32, int(self.__height / 2)), 32, 32, 1),
-            Player(self.IMAGES["tank_left1"], (self.__width - 64, int(self.__height / 2)), 32, 32, 2)]
+            Player(self.IMAGES["tank_right1"], (32+self.adjust, int(self.__height / 2)-self.adjust), 32, 32, 1),
+            Player(self.IMAGES["tank_left1"], (self.__width - 64+self.adjust, int(self.__height / 2)-self.adjust), 32, 32, 2)]
         self.Walls = []
         self.Shells = []
         self.Lives = [
