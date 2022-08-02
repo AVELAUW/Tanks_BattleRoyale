@@ -29,6 +29,8 @@ class Board(object):
         
         #self._dir = _dir
         self._dir = os.path.dirname(os.path.abspath(__file__))
+        self.LIVES1 = [511, 512, 513]
+        self.LIVES2 = [521, 522, 523]
         self.IMAGES = {
             "tank_left1": pygame.image.load(os.path.join(self._dir, 'assets/tank_left1.png')).convert_alpha(),
             "tank_right1": pygame.image.load(os.path.join(self._dir, 'assets/tank_right1.png')).convert_alpha(),
@@ -47,20 +49,20 @@ class Board(object):
         # 1 represents a wall, 2 is a tank, 3 is a bullet, 4 is the lives, 5 is the hearts.
         self.map = []
         # These are the arrays in which we store our instances of different classes
-        self.Players = [None] * 2
+        self.Players = []
         self.Walls = []
-        self.Shells = [None] * 2
-        self.Lives = [self.life] * 2
-        self.Hearts = [None] * 6
+        self.Shells = []
+        self.Lives = []
+        self.Hearts = []
         # Resets the above groups and initializes the game for us
         self.resetGroups()
 
         # Initialize the instance groups which we use to display our instances on the screen
-        self.shellGroup = pygame.sprite.RenderPlain(list(self.Shells))
-        self.playerGroup = pygame.sprite.RenderPlain(list(self.Players))
+        self.shellGroup = pygame.sprite.RenderPlain(self.Shells)
+        self.playerGroup = pygame.sprite.RenderPlain(self.Players)
         self.wallGroup = pygame.sprite.RenderPlain(self.Walls)
-        self.livesGroup = pygame.sprite.RenderPlain(list(self.Lives))
-        self.heartsGroup = pygame.sprite.RenderPlain(list(self.Hearts))
+        self.livesGroup = pygame.sprite.RenderPlain(self.Lives)
+        self.heartsGroup = pygame.sprite.RenderPlain(self.Hearts)
 
     def resetGroups(self):
         self.cycles = 0 # For the tank animations
@@ -73,29 +75,26 @@ class Board(object):
             Player(self.IMAGES["tank_right1"], (0, int(self.__height / 2)), 32, 32, 1),
             Player(self.IMAGES["tank_left1"], (self.__width - 32, int(self.__height / 2)), 32, 32, 2)]
         self.Walls = []
-        self.Shells = [None] * 2
-        self.Hearts = [None] * 6
+        self.Shells = []
         self.Lives = [
-            Wall(self.IMAGES["lives"], (0, 0)), # For player1
-            Wall(self.IMAGES["lives"], (self.__width - 128, 0)) # For player2
-        ]
+            Wall(self.IMAGES["lives"], (0, 0), 41), # For player1
+            Wall(self.IMAGES["lives"], (self.__width - 128, 0), 42)] # For player2
         #for playa in self.Lives: playa.modifySize(self.IMAGES[lives], 32, 96)
-        #self.Hearts = [
-        #    Wall(self.IMAGES["heart"], (32, 0)), # player1 life1
-        #    Wall(self.IMAGES["heart"], (64, 0)), # player1 life2
-        #    Wall(self.IMAGES["heart"], (96, 0)), # player1 life3
-        #    Wall(self.IMAGES["heart"], (self.__width - 32, 0)), # player2 life1
-        #    Wall(self.IMAGES["heart"], (self.__width - 64, 0)), # player2 life2
-        #    Wall(self.IMAGES["heart"], (self.__width - 96, 0)) # player2 life3
-        #]
+        self.Hearts = [
+            Wall(self.IMAGES["heart"], (32, 0), 511), # player1 life1
+            Wall(self.IMAGES["heart"], (64, 0), 512), # player1 life2
+            Wall(self.IMAGES["heart"], (96, 0), 513), # player1 life3
+            Wall(self.IMAGES["heart"], (self.__width - 32, 0), 521), # player2 life1
+            Wall(self.IMAGES["heart"], (self.__width - 64, 0), 522), # player2 life2
+            Wall(self.IMAGES["heart"], (self.__width - 96, 0), 523)] # player2 life3
         self.initializeGame()  # This initializes the game and generates our map
         self.createGroups()  # This creates the instance groups
 
     # Checks to destroy a shell when it hits a walll or person
-    def checkShellDestroy(self, shell, index):
-        if pygame.sprite.spritecollide(shell, self.playerGroup[index-1], False) or pygame.sprite.spritecollide(shell, self.wallGroup, False):
+    def checkShellDestroy(self, shell):
+        if pygame.sprite.spritecollide(shell, self.playerGroup, False) or pygame.sprite.spritecollide(shell, self.wallGroup, False):
             # We can use indices on shells to uniquely identify each shell
-            self.DestroyShell(index)
+            self.DestroyShell(shell.index)
 
     # Creates a new shell and add it to our shell group
     def CreateShell(self, location, direction, playerIndex):
@@ -104,39 +103,38 @@ class Board(object):
         print(playerIndex)
         if self.Shells[playerIndex-1] == None:
             if direction == 0: # UP
-                self.Shells[playerIndex-1] = Shell(self.IMAGES["shell_up2"], (location[0], location[1]-32), self.value, direction)
-                self.Shells[playerIndex-1].updateImage(self.IMAGES["shell_up2"])
+                self.Shells.append(Shell(self.IMAGES["shell_up2"], (location[0],location[1]-32), self.value, direction, playerIndex))
+                #self.Shells[?].updateImage(self.IMAGES["shell_up2"])                
             if direction == 1: # RIGHT
-                self.Shells[playerIndex-1] = Shell(self.IMAGES["shell_right2"], (location[0]+32, location[1]), self.value, direction)
-                self.Shells[playerIndex-1].updateImage(self.IMAGES["shell_right2"])
+                self.Shells.append(Shell(self.IMAGES["shell_right2"], (location[0]+32, location[1]), self.value, direction, playerIndex))
+                #self.Shells[?].updateImage(self.IMAGES["shell_right2"])
             if direction == 2: # DOWN
-                self.Shells[playerIndex-1] = Shell(self.IMAGES["shell_down2"], (location[0], location[1]+32), self.value, direction)
-                self.Shells[playerIndex-1].updateImage(self.IMAGES["shell_down2"])
+                self.Shells.append(Shell(self.IMAGES["shell_down2"], (location[0], location[1]+32), self.value, direction, playerIndex))
+                #self.Shells[?].updateImage(self.IMAGES["shell_down2"])
             if direction == 3: # LEFT
-                self.Shells[playerIndex-1] = Shell(self.IMAGES["shell_left2"], (location[0]-32, location[1]), self.value, direction)
-                self.Shells[playerIndex-1].updateImage(self.IMAGES["shell_left2"])
+                self.Shells.append(Shell(self.IMAGES["shell_left2"], (location[0]-32, location[1]), self.value, direction, playerIndex))
+                #self.Shells[?].updateImage(self.IMAGES["shell_left2"])
             self.createGroups()  # We recreate the groups so the shell is added
             
     # Destroy a shell if it has collided with a player or hit a wall
     def DestroyShell(self, playerIndex):
-        if playerIndex == 1:
-            self.Shells[0] = None
-        if playerIndex == 2:
-            self.Shells[1] = None
+        for shell in range(len(self.Shells)):
+            if self.Shells(shell).index == playerIndex:
+                self.Shells.remove(self.Shells[shell])
         self.createGroups()  # Recreate the groups so the shell is removed
     
     # Remove a heart if the player has lost their life
     def RemoveHeart(self, playerIndex):
         if playerIndex == 1:
+            for heart in range(len(self.Hearts)):
+                if self.Hearts[heart].index == self.LIVES1[self.p1_lives-1]
+                    self.Hearts.remove(self.Hearts[heart]) 
             self.p1_lives -= 1
-            self.Hearts[0:3] = 0
-            for i in range (0, self.p1_lives):
-                self.Hearts[i] = 5 # a heart
         if playerIndex == 2:
+            for heart in range(len(self.Hearts)):
+                if self.Hearts[heart].index == self.LIVES2[self.p2_lives-1]
+                    self.Hearts.remove(self.Hearts[heart])
             self.p2_lives -= 1
-            self.Hearts[3:6] = 0
-            for i in range (3, self.p1_lives):
-                self.Hearts[i] = 5 # a heart
         self.createGroups()  # Recreate the groups so the shell is removed
 
     # Create an empty 2D map of 11x11 size
@@ -165,7 +163,6 @@ class Board(object):
     You use the 2D map to add instances to the groups
     '''
     def populateMap(self):
-        num_hearts = 0
         for x in range(len(self.map)):
             for y in range(len(self.map[x])):
                 if self.map[x][y] == 1:
@@ -173,8 +170,7 @@ class Board(object):
                     self.Walls.append(Environment(self.IMAGES["wood_block"],(x * 32, y * 32)))
                 elif self.map[x][y] == 5:
                     # Add the hearts at their position
-                    self.Hearts[num_hearts] = Environment(self.IMAGES["heart"],(x * 32, y * 32))
-                    num_hearts += 1
+                    #self.Hearts.append(Environment(self.IMAGES["heart"],(x * 32, y * 32))
 
     # Update all the shell positions and check for collisions with players
     def shellCheck(self):
@@ -218,11 +214,11 @@ class Board(object):
     # Update all the groups from their corresponding lists
     def createGroups(self):
         print(type(self.Walls))
-        self.shellGroup = pygame.sprite.RenderPlain(list(self.Shells))
-        self.playerGroup = pygame.sprite.RenderPlain(list(self.Players))
+        self.shellGroup = pygame.sprite.RenderPlain(self.Shells)
+        self.playerGroup = pygame.sprite.RenderPlain(self.Players)
         self.wallGroup = pygame.sprite.RenderPlain(self.Walls)
-        self.livesGroup = pygame.sprite.RenderPlain(list(self.Lives))
-        self.heartsGroup = pygame.sprite.RenderPlain(list(self.Hearts))
+        self.livesGroup = pygame.sprite.RenderPlain(self.Lives)
+        self.heartsGroup = pygame.sprite.RenderPlain(self.Hearts)
 
     '''
     Initialize the game by making the map, generating walls, and updating the groups.
