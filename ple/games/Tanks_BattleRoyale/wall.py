@@ -9,9 +9,11 @@ If you want, you can add traps or powerups to walls such to damage or heal the p
 
 class Wall(Environment):
 
-    def __init__(self, raw_image, position):
+    def __init__(self, raw_image, position, index):
         super(Wall, self).__init__(raw_image, position)
-
+        self.index = index
+        self.position = position
+        
     # Update the image (scale)
     def updateImage(self, raw_image):
         self.image = raw_image
