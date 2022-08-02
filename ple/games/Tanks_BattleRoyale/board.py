@@ -32,8 +32,8 @@ class Board(object):
         self.LIVES1 = [511, 512, 513]
         self.LIVES2 = [521, 522, 523]
         self.IMAGES = {
-            "tank_left1": pygame.image.load(os.path.join(self._dir, 'assets/tank_left1.png')).convert_alpha(),
-            "tank_right1": pygame.image.load(os.path.join(self._dir, 'assets/tank_right1.png')).convert_alpha(),
+            "tank_left1": pygame.image.load(os.path.join(self._dir, 'assets/tank_left_1.png')).convert_alpha(),
+            "tank_right1": pygame.image.load(os.path.join(self._dir, 'assets/tank_right_1.png')).convert_alpha(),
             "wood_block": pygame.image.load(os.path.join(self._dir, 'assets/wood_block.png')).convert_alpha(),
             "lives": pygame.image.load(os.path.join(self._dir, 'assets/lives.png')).convert_alpha(),
             "heart": pygame.image.load(os.path.join(self._dir, 'assets/heart.png')).convert_alpha(),
