@@ -99,6 +99,8 @@ class Board(object):
     # Creates a new shell and add it to our shell group
     def CreateShell(self, location, direction, playerIndex):
         # Check if player already has a shell on the board
+        print(self.Shells)
+        print(playerIndex)
         if self.Shells[playerIndex-1] == None:
             if direction == 0: # UP
                 self.Shells[playerIndex-1] = Shell(self.IMAGES["shell_up2"], (location[0], location[1]-32), self.value, direction)
