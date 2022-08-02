@@ -18,7 +18,8 @@ class Board(object):
 
     def __init__(self, width, height, value, _dir):
         self.__width = width
-        self.__height = height + 10
+        self.__height = height
+        self.adjust = 10
         self.value = value # Shell speed
         self.life = 3
         self.p1_lives = self.life
@@ -77,16 +78,16 @@ class Board(object):
         self.Walls = []
         self.Shells = []
         self.Lives = [
-            Wall(self.IMAGES["lives"], (32, 10), 41), # For player1
-            Wall(self.IMAGES["lives"], (self.__width - 128, 10), 42)] # For player2
+            Wall(self.IMAGES["lives"], (32-self.adjust, 0+self.adjust), 41), # For player1
+            Wall(self.IMAGES["lives"], (self.__width - 128-self.adjust, self.adjust), 42)] # For player2
         #for playa in self.Lives: playa.modifySize(self.IMAGES[lives], 32, 96)
         self.Hearts = [
-            Wall(self.IMAGES["heart"], (64, 10), 511), # player1 life1
-            Wall(self.IMAGES["heart"], (96, 10), 512), # player1 life2
-            Wall(self.IMAGES["heart"], (128, 10), 513), # player1 life3
-            Wall(self.IMAGES["heart"], (self.__width - 32, 10), 521), # player2 life1
-            Wall(self.IMAGES["heart"], (self.__width - 64, 10), 522), # player2 life2
-            Wall(self.IMAGES["heart"], (self.__width - 96, 10), 523)] # player2 life3
+            Wall(self.IMAGES["heart"], (64-self.adjust, self.adjust), 511), # player1 life1
+            Wall(self.IMAGES["heart"], (96-self.adjust, self.adjust), 512), # player1 life2
+            Wall(self.IMAGES["heart"], (128-self.adjust, self.adjust), 513), # player1 life3
+            Wall(self.IMAGES["heart"], (self.__width - 32+self.adjust, self.adjust), 521), # player2 life1
+            Wall(self.IMAGES["heart"], (self.__width - 64+self.adjust, self.adjust), 522), # player2 life2
+            Wall(self.IMAGES["heart"], (self.__width - 96+self.adjust, self.adjust), 523)] # player2 life3
         self.initializeGame()  # This initializes the game and generates our map
         self.createGroups()  # This creates the instance groups
 
@@ -171,7 +172,7 @@ class Board(object):
             for y in range(len(self.map[x])):
                 if self.map[x][y] == 1:
                     # Add a wall at that position
-                    self.Walls.append(Environment(self.IMAGES["wood_block"],(x * 32, y * 32)))
+                    self.Walls.append(Environment(self.IMAGES["wood_block"],(x * 32+self.adjust, y * 32+self.adjust)))
                 #elif self.map[x][y] == 5:
                     # Add the hearts at their position
                     #self.Hearts.append(Environment(self.IMAGES["heart"],(x * 32, y * 32))
