@@ -18,7 +18,7 @@ class Board(object):
 
     def __init__(self, width, height, value, _dir):
         self.__width = width
-        self.__height = height + 10
+        self.__height = height
         self.value = value # Shell speed
         self.life = 3
         self.p1_lives = self.life
@@ -152,15 +152,15 @@ class Board(object):
     # Add walls to our map
     def makeWalls(self):
         for i in range(int(self.__height / 32)):
-            self.map[i][0] = self.map[i][int(self.__width / 32)-1] = 1
+            self.map[i][0] = self.map[i][int(self.__width / 32)] = 1
         for j in range(int(self.__width / 32)):
-            self.map[0][j] = self.map[int(self.__width / 32)-1][j] = 1
+            self.map[0][j] = self.map[int(self.__width / 32)][j] = 1
     
     # Add hearts to our map
     def makeHearts(self):
         for i in range(3):
             self.map[0][i] = self.map[0][i] = 5
-            self.map[0][int(self.__width / 32) - 1 - i] = self.map[0][int(self.__width / 32) - 1 - i] = 5
+            self.map[0][int(self.__width / 32) - i] = self.map[0][int(self.__width / 32) - i] = 5
 
     '''
     This is called once you have finished making the game field
