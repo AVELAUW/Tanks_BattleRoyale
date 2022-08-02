@@ -99,8 +99,8 @@ class Board(object):
     # Creates a new shell and add it to our shell group
     def CreateShell(self, location, direction, playerIndex):
         # Check if player already has a shell on the board
-        print(self.Shells)
-        print(playerIndex)
+        #print(self.Shells)
+        #print(playerIndex)
         shoot = True
         for shell in range(len(self.Shells)):
             if self.Shells(shell).index == playerIndex:
