@@ -17,8 +17,8 @@ class Board(object):
     '''
 
     def __init__(self, width, height, value, _dir):
-        self.__width = width
-        self.__height = height # + 10
+        self.__width = width + 10
+        self.__height = height + 10
         self.value = value # Shell speed
         self.life = 3
         self.p1_lives = self.life
