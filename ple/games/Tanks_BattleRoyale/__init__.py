@@ -68,12 +68,8 @@ class TanksBattleRoyale(PyGameWrapper):
         self.livesGroup = self.newGame.livesGroup
         self.heartsGroup = self.newGame.heartsGroup
 
-    def getScore(self, index):
-        if index == 1:
-            return self.newGame.p1_lives
-        if index == 2:
-            return self.newGame.p2_lives
-        return 21 # error
+    def getScore(self):
+        return self.newGame.p1_lives - self.newGame.p2_lives
 
     def game_over(self):
         return (self.newGame.p1_lives <= 0 or self.newGame.p2_lives <= 0)
