@@ -178,16 +178,16 @@ class Board(object):
 
     # Update all the shell positions and check for collisions with players
     def shellCheck(self):
-        for i in range(len(self.shellGroup)):
-            self.shellGroup[i].continuousUpdate(self.wallGroup, self.playerGroup)
-            if i == 0 and shell.checkCollision(self.playerGroup[1]):
-                self.shell[0] = 0
+        for shell in self.shellGroup:
+            shell.continuousUpdate(self.wallGroup, self.playerGroup)
+            if shell.index == 1 and shell.checkCollision(self.playerGroup):
+                self.Shells.remove(self.Shells[shell])
                 self.Players[1].setPosition((self.__width - 32, int(self.__height / 2)))
                 self.p2_lives -= 1
                 self.RemoveHeart(1)
                 self.createGroups()
-            if i == 1 and shell.checkCollision(self.playerGroup[0]):
-                self.shell[1] = 0
+            if shell.index == 2 and shell.checkCollision(self.playerGroup):
+                self.Shells.remove(self.Shells[shell])
                 self.Players[0].setPosition((0, int(self.__height / 2)))
                 self.p1_lives -= 1
                 self.RemoveHeart(0)
