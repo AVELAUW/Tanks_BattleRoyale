@@ -16,6 +16,10 @@ class Shell(Environment):
         self.__direction = direction
         self.index = index
         self.position = position
+        self.image = raw_image
+        self.image = pygame.transform.scale(self.image, (16, 16))  # Image and Rect required for the draw function on sprites
+        self.rect = self.image.get_rect()
+        self.rect.center = self.position
         
         self._dir = os.path.dirname(os.path.abspath(__file__))
         self.IMAGES = {
