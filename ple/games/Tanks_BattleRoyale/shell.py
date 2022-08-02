@@ -10,10 +10,10 @@ Each shell checks for collisions with the wood boxes in order to decide whether 
 '''
 
 class Shell(Environment):
-    def __init__(self, raw_image, position, speed, dir, index):
+    def __init__(self, raw_image, position, speed, direction, index):
         super(Shell, self).__init__(raw_image, position)
         # Set the shell direction to the direction it was shot from
-        self.__direction = dir
+        self.__direction = direction
         self.index = index
         self.position = position
         
