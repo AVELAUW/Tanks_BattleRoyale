@@ -192,8 +192,8 @@ class Board(object):
                 self.p1_lives -= 1
                 self.RemoveHeart(0)
                 self.createGroups()
-            self.checkShellDestroy(Shell, 1)
-            self.checkShellDestroy(Shell, 2)
+            self.checkShellDestroy(Shell)
+            self.checkShellDestroy(Shell)
 
     # Check if the player wins
     def checkVictory(self):
