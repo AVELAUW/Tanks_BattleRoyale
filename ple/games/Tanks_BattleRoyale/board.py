@@ -39,7 +39,7 @@ class Board(object):
             "heart": pygame.image.load(os.path.join(self._dir, 'assets/heart.png')).convert_alpha(),
             "shell_right2": pygame.image.load(os.path.join(self._dir, 'assets/shell_right2.png')).convert_alpha(),
             "shell_left2": pygame.image.load(os.path.join(self._dir, 'assets/shell_left2.png')).convert_alpha(),
-            "shell_up2": pygame.image.load(os.path.join(self._dir, 'assets/shell_up2.png')).convert_alpha(),
+            "shell_up2": pygame.image.load(os.path.join(self._dir, 'assets/shell_up_2.png')).convert_alpha(),
             "shell_down2": pygame.image.load(os.path.join(self._dir, 'assets/shell_down2.png')).convert_alpha()
         }
 
