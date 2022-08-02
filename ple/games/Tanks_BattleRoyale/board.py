@@ -209,11 +209,11 @@ class Board(object):
         #self.backdrop.draw_background(self.screen) 
         screen.fill((130, 90, 60))  # Fill it with brown
         # Draw all our groups on the background
-        self.shellGroup.draw(screen)
-        self.playerGroup.draw(screen)
         self.wallGroup.draw(screen)
         self.livesGroup.draw(screen)
         self.heartsGroup.draw(screen)
+        self.playerGroup.draw(screen)
+        self.shellGroup.draw(screen)
 
     # Update all the groups from their corresponding lists
     def createGroups(self):
