@@ -26,7 +26,7 @@ class Shell(Environment):
             "shell_left1": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/shell_left1.png')), (16, 16)).convert_alpha(),
             "shell_left2": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/shell_left2.png')), (16, 16)).convert_alpha(),
             "shell_down1": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/shell_down1.png')), (16, 16)).convert_alpha(),
-            "shell_down2": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/down2.png')), (16, 16)).convert_alpha(),
+            "shell_down2": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/shell_down2.png')), (16, 16)).convert_alpha(),
             "boom3": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/boom3.png')), (16, 16)).convert_alpha()
         }
         # The speed of a shell is set
