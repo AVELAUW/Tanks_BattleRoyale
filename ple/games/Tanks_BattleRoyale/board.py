@@ -234,6 +234,6 @@ class Board(object):
     def initializeGame(self):
         self.makeMap()
         self.makeWalls()
-        self.makeHearts()
+        #self.makeHearts()
         self.populateMap()
         self.createGroups()
