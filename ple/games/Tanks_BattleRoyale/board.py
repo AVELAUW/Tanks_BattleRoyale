@@ -17,7 +17,7 @@ class Board(object):
     '''
 
     def __init__(self, width, height, value, _dir):
-        self.__width = width + 10
+        self.__width = width
         self.__height = height + 10
         self.value = value # Shell speed
         self.life = 3
@@ -72,18 +72,18 @@ class Board(object):
         self.p2_lives = self.life
         self.map = []  # We will create the map again when we reset the game
         self.Players = [
-            Player(self.IMAGES["tank_right1"], (0, int(self.__height / 2)), 32, 32, 1),
-            Player(self.IMAGES["tank_left1"], (self.__width - 32, int(self.__height / 2)), 32, 32, 2)]
+            Player(self.IMAGES["tank_right1"], (32, int(self.__height / 2)), 32, 32, 1),
+            Player(self.IMAGES["tank_left1"], (self.__width - 64, int(self.__height / 2)), 32, 32, 2)]
         self.Walls = []
         self.Shells = []
         self.Lives = [
-            Wall(self.IMAGES["lives"], (0, 0), 41), # For player1
+            Wall(self.IMAGES["lives"], (32, 0), 41), # For player1
             Wall(self.IMAGES["lives"], (self.__width - 128, 0), 42)] # For player2
         #for playa in self.Lives: playa.modifySize(self.IMAGES[lives], 32, 96)
         self.Hearts = [
-            Wall(self.IMAGES["heart"], (32, 0), 511), # player1 life1
-            Wall(self.IMAGES["heart"], (64, 0), 512), # player1 life2
-            Wall(self.IMAGES["heart"], (96, 0), 513), # player1 life3
+            Wall(self.IMAGES["heart"], (64, 0), 511), # player1 life1
+            Wall(self.IMAGES["heart"], (96, 0), 512), # player1 life2
+            Wall(self.IMAGES["heart"], (128, 0), 513), # player1 life3
             Wall(self.IMAGES["heart"], (self.__width - 32, 0), 521), # player2 life1
             Wall(self.IMAGES["heart"], (self.__width - 64, 0), 522), # player2 life2
             Wall(self.IMAGES["heart"], (self.__width - 96, 0), 523)] # player2 life3
