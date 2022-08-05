@@ -42,7 +42,9 @@ class Board(object):
             "shell_left2": pygame.image.load(os.path.join(self._dir, 'assets/shell_left2.png')).convert_alpha(),
             "shell_up2": pygame.image.load(os.path.join(self._dir, 'assets/shell_up_2.png')).convert_alpha(),
             "shell_down2": pygame.image.load(os.path.join(self._dir, 'assets/shell_down2.png')).convert_alpha(),
-            "boom3": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/boom3.png')), (16, 16)).convert_alpha()
+            "boom3": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/boom3.png')), (16, 16)).convert_alpha(),
+            "background1": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/dirt.png')), (352, 352)).convert_alpha(),
+            "background2": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/dirt2.png')), (352, 352)).convert_alpha()
         }
 
         self.white = (255, 255, 255)
@@ -212,7 +214,9 @@ class Board(object):
     def redrawScreen(self, screen, width, height):
         #screen.blit(self.background_image, (0, 0))
         #self.backdrop.draw_background(self.screen) 
-        screen.fill((130, 90, 60))  # Fill it with brown
+        background = pygame.image.load("background1.png")
+        gameDisplay.blit(background, (0, 0))
+        #screen.fill((130, 90, 60))  # Fill it with brown
         # Draw all our groups on the background
         self.wallGroup.draw(screen)
         self.livesGroup.draw(screen)
