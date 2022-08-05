@@ -214,7 +214,7 @@ class Board(object):
     def redrawScreen(self, screen, width, height):
         #screen.blit(self.background_image, (0, 0))
         #self.backdrop.draw_background(self.screen) 
-        background = pygame.image.load("background1.png")
+        background = pygame.image.load(self.IMAGES["background1"])
         gameDisplay.blit(background, (0, 0))
         #screen.fill((130, 90, 60))  # Fill it with brown
         # Draw all our groups on the background
