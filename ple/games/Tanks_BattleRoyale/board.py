@@ -146,7 +146,6 @@ class Board(object):
                     print("Player 2 RemoveHeart",self.p2_lives)
                     break
         self.createGroups()  # Recreate the groups so the shell is removed
-        print(len(self.Hearts))
 
     # Create an empty 2D map of 11x11 size
     def makeMap(self):
@@ -227,7 +226,6 @@ class Board(object):
         self.wallGroup = pygame.sprite.RenderPlain(self.Walls)
         self.livesGroup = pygame.sprite.RenderPlain(self.Lives)
         self.heartsGroup = pygame.sprite.RenderPlain(self.Hearts)
-        print("heartsGroup:", len(self.heartsGroup))
 
     '''
     Initialize the game by making the map, generating walls, and updating the groups.
