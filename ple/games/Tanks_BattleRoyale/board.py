@@ -108,7 +108,7 @@ class Board(object):
         #print("shells:", self.Shells, "player index:", playerIndex)
         shoot = True
         for shell in range(len(self.Shells)):
-            if self.Shells(shell).index == playerIndex:
+            if self.Shells[shell].index == playerIndex:
                 print("should not shoot")
                 shoot = False
         if shoot:
