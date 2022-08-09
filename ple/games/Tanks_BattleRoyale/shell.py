@@ -24,23 +24,23 @@ class Shell(Environment):
         
         self._dir = os.path.dirname(os.path.abspath(__file__))
         self.IMAGES = {
-            "shell_right1": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/shell_right_1.png')), (16, 16)).convert_alpha(),
-            "shell_right2": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/shell_right2.png')), (16, 16)).convert_alpha(),
-            "shell_up1": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/shell_up1.png')), (16, 16)).convert_alpha(),
-            "shell_up2": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/shell_up_2.png')), (16, 16)).convert_alpha(),
-            "shell_left1": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/shell_left_1.png')), (16, 16)).convert_alpha(),
-            "shell_left2": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/shell_left2.png')), (16, 16)).convert_alpha(),
-            "shell_down1": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/shell_down_1.png')), (16, 16)).convert_alpha(),
-            "shell_down2": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/shell_down2.png')), (16, 16)).convert_alpha(),
-            "boom3": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/boom3.png')), (16, 16)).convert_alpha()
+            "shell_right1": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/shell_right_1.png')), (32, 32)).convert_alpha(),
+            "shell_right2": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/shell_right2.png')), (32, 32)).convert_alpha(),
+            "shell_up1": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/shell_up1.png')), (32, 32)).convert_alpha(),
+            "shell_up2": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/shell_up_2.png')), (32, 32)).convert_alpha(),
+            "shell_left1": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/shell_left_1.png')), (32, 32)).convert_alpha(),
+            "shell_left2": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/shell_left2.png')), (32, 32)).convert_alpha(),
+            "shell_down1": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/shell_down_1.png')), (32, 32)).convert_alpha(),
+            "shell_down2": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/shell_down2.png')), (32, 32)).convert_alpha(),
+            "boom3": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/boom3.png')), (32, 32)).convert_alpha()
         }
         # The speed of a shell is set
-        self.__speed = 0.25
+        self.__speed = 1
     
     # Update the image of a shell (and scale)
     def updateImage(self, raw_image):
         self.image = raw_image
-        self.image = pygame.transform.scale(self.image, (16, 16))
+        self.image = pygame.transform.scale(self.image, (32, 32))
 
     # Getters and Setters for private variables
     def getSpeed(self):
