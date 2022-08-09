@@ -20,7 +20,7 @@ class Board(object):
         self.__width = width
         self.__height = height
         self.adjust = 14
-        self.value = value # Shell speed
+        self.value = 0.25 # value # Shell speed
         self.life = 3
         self.p1_lives = self.life
         self.p2_lives = self.life
@@ -69,6 +69,7 @@ class Board(object):
         self.heartsGroup = pygame.sprite.RenderPlain(self.Hearts)
 
     def resetGroups(self):
+        print("reset groups")
         self.cycles = 0 # For the tank animations
         self.p1_dir = 1 # player1 is on the left, facing right
         self.p2_dir = 3 # player2 is on the right, facing left
@@ -76,8 +77,8 @@ class Board(object):
         self.p2_lives = self.life
         self.map = []  # We will create the map again when we reset the game
         self.Players = [
-            Player(self.IMAGES["tank_right1"], (32+self.adjust, int(self.__height / 2)+self.adjust), 32, 32, 1),
-            Player(self.IMAGES["tank_left1"], (self.__width - 64+self.adjust, int(self.__height / 2)+self.adjust), 32, 32, 2)]
+            Player(self.IMAGES["tank_right1"], (32+self.adjust, int(self.__height / 2)-self.adjust), 32, 32, 1),
+            Player(self.IMAGES["tank_left1"], (self.__width - 64+self.adjust, int(self.__height / 2)-self.adjust), 32, 32, 2)]
         self.Walls = []
         self.Shells = []
         self.Lives = [
@@ -104,14 +105,13 @@ class Board(object):
     # Creates a new shell and add it to our shell group
     def CreateShell(self, location, direction, playerIndex):
         # Check if player already has a shell on the board
-        print("shells:", self.Shells) #, "player index:", playerIndex)
+        #print("shells:", self.Shells, "player index:", playerIndex)
         shoot = True
         for shell in range(len(self.Shells)):
             if self.Shells(shell).index == playerIndex:
                 print("should not shoot")
                 shoot = False
         if shoot:
-            print("shoot", direction)
             if direction == 0: # UP
                 self.Shells.append(Shell(self.IMAGES["shell_up2"], (location[0],location[1]-32), self.value, direction, playerIndex))
                 #self.Shells[?].updateImage(self.IMAGES["shell_up2"])                
@@ -124,7 +124,6 @@ class Board(object):
             if direction == 3: # LEFT
                 self.Shells.append(Shell(self.IMAGES["shell_left2"], (location[0]-32, location[1]), self.value, direction, playerIndex))
                 #self.Shells[?].updateImage(self.IMAGES["shell_left2"])
-            print("shells:", self.Shells)
             self.createGroups()  # We recreate the groups so the shell is added
             print("shells:", self.Shells)
             
@@ -171,15 +170,9 @@ class Board(object):
             self.map[0][j] = 1
             self.map[int(self.__width / 32) - 1][j] = 1
         # Block center of map
-        self.map[4][4] = 1
-        self.map[4][5] = 1
-        self.map[4][6] = 1
-        self.map[5][4] = 1
+        #self.map[5][4] = 1
         self.map[5][5] = 1
-        self.map[5][6] = 1
-        self.map[6][4] = 1
-        self.map[6][5] = 1
-        self.map[6][6] = 1
+        #self.map[5][6] = 1
     
     # Add hearts to our map
     #def makeHearts(self):
@@ -208,13 +201,13 @@ class Board(object):
             if shell.index == 1 and shell.checkCollision(self.playerGroup):
                 print("player2 hit")
                 self.Shells.remove(shell) # self.Shells[shell]
-                self.Players[1].setPosition((32+self.adjust, int(self.__height / 2)+self.adjust))
+                self.Players[1].setPosition((32+self.adjust, int(self.__height / 2)-self.adjust))
                 self.RemoveHeart(2)
                 self.createGroups()
             if shell.index == 2 and shell.checkCollision(self.playerGroup):
                 print("player1 hit")
                 self.Shells.remove(shell) # self.Shells[shell]
-                self.Players[0].setPosition((self.__width - 64+self.adjust, int(self.__height / 2)+self.adjust))
+                self.Players[0].setPosition((self.__width - 64+self.adjust, int(self.__height / 2)-self.adjust))
                 self.RemoveHeart(1)
                 self.createGroups()
             self.checkShellDestroy(shell)
