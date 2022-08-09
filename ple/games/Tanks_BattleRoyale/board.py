@@ -191,7 +191,6 @@ class Board(object):
                 self.Players[1].setPosition((32+self.adjust, int(self.__height / 2)))
                 self.RemoveHeart(2) # Player 2 hit
                 self.createGroups()
-                print(self.heartsGroup)
             if shell.index == 2 and shell.checkCollision(self.playerGroup):
                 self.Shells.remove(shell)
                 self.Players[0].setPosition((self.__width - 64+self.adjust, int(self.__height / 2)))
