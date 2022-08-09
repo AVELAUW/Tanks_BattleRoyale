@@ -85,7 +85,7 @@ class Shell(Environment):
         # When we hit a wall or player, we explode
         if self.checkCollision(wallGroup) or self.checkCollision(playerGroup):
             self.updateImage(self.IMAGES["boom3"]):
-            self.update(self.IMAGES["boom3"], 0)
+            #self.update(self.IMAGES["boom3"], 0)
 
     # Move the shell in the required direction with the required speed (value), then set its image
     def update(self, raw_image, value):
