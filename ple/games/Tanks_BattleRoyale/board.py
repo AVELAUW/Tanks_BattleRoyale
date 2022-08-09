@@ -77,8 +77,8 @@ class Board(object):
         self.p2_lives = self.life
         self.map = []  # We will create the map again when we reset the game
         self.Players = [
-            Player(self.IMAGES["tank_right1"], (32+self.adjust, int(self.__height / 2)-self.adjust), 32, 32, 1),
-            Player(self.IMAGES["tank_left1"], (self.__width - 64+self.adjust, int(self.__height / 2)-self.adjust), 32, 32, 2)]
+            Player(self.IMAGES["tank_right1"], (32+self.adjust, int(self.__height / 2)), 32, 32, 1),
+            Player(self.IMAGES["tank_left1"], (self.__width - 64+self.adjust, int(self.__height / 2)), 32, 32, 2)]
         self.Walls = []
         self.Shells = []
         self.Lives = [
@@ -197,13 +197,13 @@ class Board(object):
             if shell.index == 1 and shell.checkCollision(self.playerGroup):
                 print("player2 hit", shell.checkCollision(self.playerGroup))
                 self.Shells.remove(shell) # self.Shells[shell]
-                self.Players[1].setPosition((32+self.adjust, int(self.__height / 2)-self.adjust))
+                self.Players[1].setPosition((32+self.adjust, int(self.__height / 2)))
                 self.RemoveHeart(2)
                 self.createGroups()
             if shell.index == 2 and shell.checkCollision(self.playerGroup):
                 print("player1 hit", shell.checkCollision(self.playerGroup))
                 self.Shells.remove(shell) # self.Shells[shell]
-                self.Players[0].setPosition((self.__width - 64+self.adjust, int(self.__height / 2)-self.adjust))
+                self.Players[0].setPosition((self.__width - 64+self.adjust, int(self.__height / 2)))
                 self.RemoveHeart(1)
                 self.createGroups()
             self.checkShellDestroy(shell)
