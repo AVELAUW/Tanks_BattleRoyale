@@ -20,7 +20,7 @@ class Board(object):
         self.__width = width
         self.__height = height
         self.adjust = 14
-        self.value = 1 # value # Shell speed
+        self.value = value # value # Shell speed
         self.life = 3
         self.p1_lives = self.life
         self.p2_lives = self.life
@@ -124,12 +124,10 @@ class Board(object):
             
     # Destroy a shell if it has collided with a player or hit a wall
     def DestroyShell(self, playerIndex):
-        print(self.Shells, playerIndex)
         for shell in range(len(self.Shells)):
-            print(shell, self.Shells[shell])
             if self.Shells[shell].index == playerIndex:
+                print("Shell removed:", shell)
                 self.Shells.remove(self.Shells[shell])
-                print("Shell removed")
                 break
         self.createGroups()  # Recreate the groups so the shell is removed
     
@@ -139,15 +137,14 @@ class Board(object):
             for heart in range(len(self.Hearts)):
                 if self.Hearts[heart].index == self.LIVES1[self.p1_lives-1]:
                     self.Hearts.remove(self.Hearts[heart]) 
-                break
+                    break
             self.p1_lives -= 1
             print("p1 remove heart", self.p1_lives)
-            
         if playerIndex == 2:
             for heart in range(len(self.Hearts)):
                 if self.Hearts[heart].index == self.LIVES2[self.p2_lives-1]:
                     self.Hearts.remove(self.Hearts[heart]) 
-                break
+                    break
             self.p2_lives -= 1
             print("p2 remove heart",self.p2_lives)
         self.createGroups()  # Recreate the groups so the shell is removed
@@ -197,6 +194,7 @@ class Board(object):
     def shellCheck(self):
         for shell in self.shellGroup:
             shell.continuousUpdate(self.wallGroup, self.playerGroup)
+            print(shell.checkCollision(self.playerGroup))
             if shell.index == 1 and shell.checkCollision(self.playerGroup):
                 print("player2 hit")
                 self.Shells.remove(shell) # self.Shells[shell]
