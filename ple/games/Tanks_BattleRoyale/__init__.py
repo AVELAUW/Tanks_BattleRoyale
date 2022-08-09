@@ -15,7 +15,7 @@ class TanksBattleRoyale(PyGameWrapper):
         """
         self.height = 352
         self.width = 352
-        self.value = 5 # Shell speed
+        self.value = 6 # Shell speed
 
         actions = {
             "p1_left": K_a,
