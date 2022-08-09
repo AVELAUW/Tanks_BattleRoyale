@@ -194,13 +194,14 @@ class Board(object):
     def shellCheck(self):
         for shell in self.shellGroup:
             shell.continuousUpdate(self.wallGroup, self.playerGroup)
-            if shell.index == 1 and shell.checkCollision(self.Players[shell.index]): #self.playerGroup):
+            print(shell.checkCollision(self.playerGroup))
+            if shell.index == 1 and shell.checkCollision(self.playerGroup):
                 print("player2 hit")
                 self.Shells.remove(shell) # self.Shells[shell]
                 self.Players[1].setPosition((32+self.adjust, int(self.__height / 2)-self.adjust))
                 self.RemoveHeart(2)
                 self.createGroups()
-            if shell.index == 2 and shell.checkCollision(self.Players[shell.index-2]): #self.playerGroup):
+            if shell.index == 2 and shell.checkCollision(self.playerGroup):
                 print("player1 hit")
                 self.Shells.remove(shell) # self.Shells[shell]
                 self.Players[0].setPosition((self.__width - 64+self.adjust, int(self.__height / 2)-self.adjust))
