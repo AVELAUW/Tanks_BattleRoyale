@@ -139,13 +139,13 @@ class Board(object):
                 if self.Hearts[heart].index == self.LIVES1[self.p1_lives-1]:
                     self.Hearts.remove(self.Hearts[heart]) 
             self.p1_lives -= 1
-            print("p1 remove heart")
+            print("p1 remove heart", self.p1_lives)
         if playerIndex == 2:
             for heart in range(len(self.Hearts)):
                 if self.Hearts[heart].index == self.LIVES2[self.p2_lives-1]:
                     self.Hearts.remove(self.Hearts[heart]) 
             self.p2_lives -= 1
-            print("p2 remove heart")
+            print("p2 remove heart",self.p2_lives)
         self.createGroups()  # Recreate the groups so the shell is removed
 
     # Create an empty 2D map of 11x11 size
@@ -209,7 +209,6 @@ class Board(object):
 
     # Check if the player wins
     def checkVictory(self):
-        print("p1 lives",self.p1_lives,"p2 lives",self.p2_lives)
         if self.p1_lives <= 0:
             print("Player 2 (right) wins!")
             self.resetGroups()
