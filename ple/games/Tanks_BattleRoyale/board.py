@@ -81,7 +81,7 @@ class Board(object):
         self.Walls = []
         self.Shells = []
         self.Lives = [
-            Wall(self.IMAGES["lives"], (32-self.adjust, 0+self.adjust), 41), # For player1
+            Wall(self.IMAGES["lives"], (32-self.adjust, self.adjust), 41), # For player1
             Wall(self.IMAGES["lives"], (self.__width - 128+self.adjust, self.adjust), 42)] # For player2
         #for playa in self.Lives: playa.modifySize(self.IMAGES[lives], 32, 96)
         self.Hearts = [
@@ -104,13 +104,15 @@ class Board(object):
     # Creates a new shell and add it to our shell group
     def CreateShell(self, location, direction, playerIndex):
         # Check if player already has a shell on the board
-        #print(self.Shells)
-        #print(playerIndex)
+        print(self.Shells)
+        print(playerIndex)
         shoot = True
         for shell in range(len(self.Shells)):
             if self.Shells(shell).index == playerIndex:
+                print("should not shoot")
                 shoot = False
         if shoot:
+            print("shoot")
             if direction == 0: # UP
                 self.Shells.append(Shell(self.IMAGES["shell_up2"], (location[0],location[1]-32), self.value, direction, playerIndex))
                 #self.Shells[?].updateImage(self.IMAGES["shell_up2"])                
@@ -127,22 +129,27 @@ class Board(object):
             
     # Destroy a shell if it has collided with a player or hit a wall
     def DestroyShell(self, playerIndex):
+        print(self.Shells)
         for shell in range(len(self.Shells)):
+            print("playerIndex:", playerIndex)
+            print("shellIndex:", self.Shells[shell].index)
             if self.Shells[shell].index == playerIndex:
+                print("Shell removed")
                 self.Shells.remove(self.Shells[shell])
         self.createGroups()  # Recreate the groups so the shell is removed
+        print(self.Shells)
     
     # Remove a heart if the player has lost their life
     def RemoveHeart(self, playerIndex):
         if playerIndex == 1:
             for heart in range(len(self.Hearts)):
                 if self.Hearts[heart].index == self.LIVES1[self.p1_lives-1]:
-                    self.Hearts.remove(self.Hearts[heart]) 
+                    self.Hearts.remove(heart) 
             self.p1_lives -= 1
         if playerIndex == 2:
             for heart in range(len(self.Hearts)):
                 if self.Hearts[heart].index == self.LIVES2[self.p2_lives-1]:
-                    self.Hearts.remove(self.Hearts[heart])
+                    self.Hearts.remove(heart)
             self.p2_lives -= 1
         self.createGroups()  # Recreate the groups so the shell is removed
 
@@ -162,12 +169,22 @@ class Board(object):
         for j in range(int(self.__width / 32)):
             self.map[0][j] = 1
             self.map[int(self.__width / 32) - 1][j] = 1
+        # Block center of map
+        self.map[4][4] = 1
+        self.map[4][5] = 1
+        self.map[4][6] = 1
+        self.map[5][4] = 1
+        self.map[5][5] = 1
+        self.map[5][6] = 1
+        self.map[6][4] = 1
+        self.map[6][5] = 1
+        self.map[6][6] = 1
     
     # Add hearts to our map
-    def makeHearts(self):
-        for i in range(3):
-            self.map[0][i] = self.map[0][i] = 5
-            self.map[0][int(self.__width / 32) - 1 - i] = self.map[0][int(self.__width / 32) - 1 - i] = 5
+    #def makeHearts(self):
+    #    for i in range(3):
+    #        self.map[0][i] = self.map[0][i] = 5
+    #        self.map[0][int(self.__width / 32) - 1 - i] = self.map[0][int(self.__width / 32) - 1 - i] = 5
 
     '''
     This is called once you have finished making the game field
@@ -187,19 +204,19 @@ class Board(object):
     def shellCheck(self):
         for shell in self.shellGroup:
             shell.continuousUpdate(self.wallGroup, self.playerGroup)
+            print("Collision:", shell.checkCollision(self.playerGroup))
             if shell.index == 1 and shell.checkCollision(self.playerGroup):
-                self.Shells.remove(self.Shells[shell])
-                self.Players[1].setPosition((self.__width - 32, int(self.__height / 2)))
-                self.p2_lives -= 1
-                self.RemoveHeart(1)
+                print("player2 hit")
+                self.Shells.remove(shell) # self.Shells[shell]
+                self.Players[1].setPosition((32+self.adjust, int(self.__height / 2)+self.adjust))
+                self.RemoveHeart(2)
                 self.createGroups()
             if shell.index == 2 and shell.checkCollision(self.playerGroup):
-                self.Shells.remove(self.Shells[shell])
-                self.Players[0].setPosition((0, int(self.__height / 2)))
-                self.p1_lives -= 1
-                self.RemoveHeart(0)
+                print("player1 hit")
+                self.Shells.remove(shell) # self.Shells[shell]
+                self.Players[0].setPosition((self.__width - 64+self.adjust, int(self.__height / 2)+self.adjust))
+                self.RemoveHeart(1)
                 self.createGroups()
-            self.checkShellDestroy(shell)
             self.checkShellDestroy(shell)
 
     # Check if the player wins
