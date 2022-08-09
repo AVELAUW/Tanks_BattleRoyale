@@ -250,7 +250,7 @@ class TanksBattleRoyale(PyGameWrapper):
         self.newGame.checkVictory()
         
         # Redraws all our instances onto the screen
-        self.newGame.redrawScreen(self.screen, self.width, self.height, 0)
+        self.newGame.redrawScreen(self.screen, self.width, self.height)
 
         # Update the shell and check for collisions with the other player
         self.newGame.shellCheck()
