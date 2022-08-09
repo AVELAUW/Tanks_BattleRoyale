@@ -35,7 +35,7 @@ class Shell(Environment):
             "boom3": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/boom3.png')), (32, 32)).convert_alpha()
         }
         # The speed of a shell is set
-        self.__speed = 1
+        self.__speed = speed
     
     # Update the image of a shell (and scale)
     def updateImage(self, raw_image):
