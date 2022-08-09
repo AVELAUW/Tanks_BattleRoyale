@@ -35,7 +35,7 @@ class Shell(Environment):
             "boom3": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/boom3.png')), (16, 16)).convert_alpha()
         }
         # The speed of a shell is set
-        self.__speed = 2
+        self.__speed = 0.25
     
     # Update the image of a shell (and scale)
     def updateImage(self, raw_image):
@@ -84,6 +84,7 @@ class Shell(Environment):
                 self.update(self.IMAGES["shell_left1"], self.__speed)
         # When we hit a wall or player, we explode
         if self.checkCollision(wallGroup) or self.checkCollision(playerGroup):
+            print("shell class collision")
             self.updateImage(self.IMAGES["boom3"])
             #self.update(self.IMAGES["boom3"], 0)
 
