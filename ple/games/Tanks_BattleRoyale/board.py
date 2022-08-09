@@ -46,7 +46,8 @@ class Board(object):
             "shell_down2": pygame.image.load(os.path.join(self._dir, 'assets/shell_down2.png')).convert_alpha(),
             "boom3": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/boom3.png')), (32, 32)).convert_alpha(),
             "background1": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/dirt.png')), (352, 352)).convert_alpha(),
-            "background2": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/dirt2.png')), (352, 352)).convert_alpha()
+            "background2": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/dirt2.png')), (352, 352)).convert_alpha(),
+            "gameLost": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/game_over.png')), (352, 352)).convert_alpha()
         }
 
         self.white = (255, 255, 255)
@@ -202,26 +203,29 @@ class Board(object):
     def checkVictory(self):
         if self.p1_lives <= 0:
             print("Player 2 (right) wins!")
-            pygame.time.delay(3000)
-            print("Reset groups")
+            self.redrawScreen(winner=2)
             self.resetGroups()
         if self.p2_lives <= 0:
             print("Player 1 (left) wins!")
-            pygame.time.delay(3000)
-            print("Reset groups")
+            self.redrawScreen(winner=1)
             self.resetGroups()
-
+    
     # Redraws the entire game screen
-    def redrawScreen(self, screen, width, height):
-        #self.backdrop.draw_background(self.screen) 
-        screen.blit(self.IMAGES["background1"], (0, 0))
-        #screen.fill((130, 90, 60))  # Fill it with brown
-        # Draw all our groups on the background
-        self.wallGroup.draw(screen)
-        self.livesGroup.draw(screen)
-        self.heartsGroup.draw(screen)
-        self.playerGroup.draw(screen)
-        self.shellGroup.draw(screen)
+    def redrawScreen(self, screen, width, height, winner=0):
+        if winner==1 or winner==2:
+            screen.blit(self.IMAGES["gameLost"], (0, 0))
+            pygame.time.delay(5000)
+        else:
+            #self.backdrop.draw_background(self.screen) 
+            screen.blit(self.IMAGES["background1"], (0, 0))
+            #screen.fill((130, 90, 60))  # Fill it with brown
+            # Draw all our groups on the background
+            self.wallGroup.draw(screen)
+            self.livesGroup.draw(screen)
+            self.heartsGroup.draw(screen)
+            self.playerGroup.draw(screen)
+            self.shellGroup.draw(screen)
+        
 
     # Update all the groups from their corresponding lists
     def createGroups(self):
