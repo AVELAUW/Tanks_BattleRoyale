@@ -203,9 +203,13 @@ class Board(object):
     def checkVictory(self):
         if self.p1_lives <= 0:
             print("Player 2 (right) wins!")
+            pygame.time.delay(3000)
+            print("Reset groups")
             self.resetGroups()
         if self.p2_lives <= 0:
-            print("Player 1 (left) wins!")    
+            print("Player 1 (left) wins!")
+            pygame.time.delay(3000)
+            print("Reset groups")
             self.resetGroups()
 
     # Redraws the entire game screen
