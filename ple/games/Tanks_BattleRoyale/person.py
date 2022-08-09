@@ -1,4 +1,5 @@
 import pygame
+import os
 
 '''
 This class defines all of the 'living' objects in the game (e.g. player1 and player2)
