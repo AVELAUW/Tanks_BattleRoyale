@@ -71,7 +71,6 @@ class Board(object):
         self.heartsGroup = pygame.sprite.RenderPlain(self.Hearts)
 
     def resetGroups(self):
-        print("reset groups")
         self.cycles = 0 # For the tank animations
         self.p1_dir = 1 # player1 is on the left, facing right
         self.p2_dir = 3 # player2 is on the right, facing left
