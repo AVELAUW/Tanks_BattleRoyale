@@ -79,8 +79,8 @@ class Board(object):
         self.p2_lives = self.life
         self.map = []  # We will create the map again when we reset the game
         self.Players = [
-            Player(self.IMAGES["tank_right1"], (32+self.adjust, int(self.__height / 2)), 32, 32, 1),
-            Player(self.IMAGES["tank_left1"], (self.__width - 64+self.adjust, int(self.__height / 2)), 32, 32, 2)]
+            Player(self.IMAGES["tank_left1"], (self.__width - 64+self.adjust, int(self.__height / 2)), 32, 32, 2),
+            Player(self.IMAGES["tank_right1"], (32+self.adjust, int(self.__height / 2)), 32, 32, 1)]
         self.Walls = []
         self.Shells = []
         self.Lives = [
@@ -179,9 +179,6 @@ class Board(object):
                 if self.map[x][y] == 1:
                     # Add a wall at that position
                     self.Walls.append(Environment(self.IMAGES["wood_block"],(x * 32+self.adjust, y * 32+self.adjust)))
-                #elif self.map[x][y] == 5:
-                    # Add the hearts at their position
-                    #self.Hearts.append(Environment(self.IMAGES["heart"],(x * 32, y * 32))
 
     # Update all the shell positions and check for collisions with players
     def shellCheck(self):
@@ -189,12 +186,12 @@ class Board(object):
             shell.continuousUpdate(self.wallGroup, self.playerGroup)
             if shell.index == 1 and shell.checkCollision(self.playerGroup):
                 self.Shells.remove(shell)
-                self.Players[1].setPosition((32+self.adjust, int(self.__height / 2)))
+                #self.Players[1].setPosition((self.__width - 64+self.adjust, int(self.__height / 2))) 
                 self.RemoveHeart(2) # Player 2 hit
                 self.createGroups()
             if shell.index == 2 and shell.checkCollision(self.playerGroup):
                 self.Shells.remove(shell)
-                self.Players[0].setPosition((self.__width - 64+self.adjust, int(self.__height / 2)))
+                #self.Players[0].setPosition((32+self.adjust, int(self.__height / 2)))
                 self.RemoveHeart(1) # Player 1 hit
                 self.createGroups()
             self.checkShellDestroy(shell)
