@@ -10,7 +10,7 @@ class Player(Person):
     def __init__(self, raw_image, position, width, height, index):
         super(Player, self).__init__(raw_image, position, width, height)
         self.index = index
-        self.__speed = 4  # Movement speed of the player
+        self.__speed = 3  # Movement speed of the player
 
     # Getters and Setters
     def getSpeed(self):
