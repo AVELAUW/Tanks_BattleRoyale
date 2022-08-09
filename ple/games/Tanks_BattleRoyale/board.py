@@ -131,7 +131,6 @@ class Board(object):
     
     # Remove a heart if the player has lost their life
     def RemoveHeart(self, playerIndex):
-        print(len(self.Hearts))
         if playerIndex == 1:
             for heart in range(len(self.Hearts)):
                 if self.Hearts[heart].index == self.LIVES1[self.p1_lives-1]:
@@ -228,7 +227,7 @@ class Board(object):
         self.wallGroup = pygame.sprite.RenderPlain(self.Walls)
         self.livesGroup = pygame.sprite.RenderPlain(self.Lives)
         self.heartsGroup = pygame.sprite.RenderPlain(self.Hearts)
-        print(len(self.heartsGroup))
+        print("heartsGroup:", len(self.heartsGroup))
 
     '''
     Initialize the game by making the map, generating walls, and updating the groups.
