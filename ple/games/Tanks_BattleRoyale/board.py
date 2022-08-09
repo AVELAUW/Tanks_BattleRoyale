@@ -130,6 +130,7 @@ class Board(object):
             if self.Shells[shell].index == playerIndex:
                 self.Shells.remove(self.Shells[shell])
                 print("Shell removed")
+                break
         self.createGroups()  # Recreate the groups so the shell is removed
     
     # Remove a heart if the player has lost their life
