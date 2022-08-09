@@ -82,8 +82,8 @@ class Board(object):
         self.winner = 0
         self.map = []  # We will create the map again when we reset the game
         self.Players = [
-            Player(self.IMAGES["tank_left1"], (self.__width - 64+self.adjust, int(self.__height / 2)), 32, 32, 2),
-            Player(self.IMAGES["tank_right1"], (32+self.adjust, int(self.__height / 2)), 32, 32, 1)]
+            Player(self.IMAGES["tank_left1"], (self.__width - 64+self.adjust, int(self.__height / 2)), 32, 32, 1),
+            Player(self.IMAGES["tank_right1"], (32+self.adjust, int(self.__height / 2)), 32, 32, 2)]
         self.Walls = []
         self.Shells = []
         self.Lives = [
