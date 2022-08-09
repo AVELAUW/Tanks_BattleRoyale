@@ -105,52 +105,45 @@ class Board(object):
     # Creates a new shell and add it to our shell group
     def CreateShell(self, location, direction, playerIndex):
         # Check if player already has a shell on the board
-        #print("shells:", self.Shells, "player index:", playerIndex)
         shoot = True
         for shell in range(len(self.Shells)):
             if self.Shells[shell].index == playerIndex:
-                print("should not shoot")
+                #print("should not shoot")
                 shoot = False
         if shoot:
             if direction == 0: # UP
-                self.Shells.append(Shell(self.IMAGES["shell_up2"], (location[0],location[1]-32), self.value, direction, playerIndex))
-                #self.Shells[?].updateImage(self.IMAGES["shell_up2"])                
+                self.Shells.append(Shell(self.IMAGES["shell_up2"], (location[0],location[1]-32), self.value, direction, playerIndex))               
             if direction == 1: # RIGHT
                 self.Shells.append(Shell(self.IMAGES["shell_right2"], (location[0]+32, location[1]), self.value, direction, playerIndex))
-                #self.Shells[?].updateImage(self.IMAGES["shell_right2"])
             if direction == 2: # DOWN
                 self.Shells.append(Shell(self.IMAGES["shell_down2"], (location[0], location[1]+32), self.value, direction, playerIndex))
-                #self.Shells[?].updateImage(self.IMAGES["shell_down2"])
             if direction == 3: # LEFT
                 self.Shells.append(Shell(self.IMAGES["shell_left2"], (location[0]-32, location[1]), self.value, direction, playerIndex))
-                #self.Shells[?].updateImage(self.IMAGES["shell_left2"])
             self.createGroups()  # We recreate the groups so the shell is added
-            print("shells:", self.Shells)
+            #print("shells:", self.Shells)
             
     # Destroy a shell if it has collided with a player or hit a wall
     def DestroyShell(self, playerIndex):
-        print(self.Shells)
         for shell in range(len(self.Shells)):
-            print("playerIndex:", playerIndex)
-            print("shellIndex:", self.Shells[shell].index)
             if self.Shells[shell].index == playerIndex:
-                print("Shell removed")
                 self.Shells.remove(self.Shells[shell])
+                print("Shell removed")
         self.createGroups()  # Recreate the groups so the shell is removed
-        print(self.Shells)
     
     # Remove a heart if the player has lost their life
     def RemoveHeart(self, playerIndex):
         if playerIndex == 1:
             for heart in range(len(self.Hearts)):
                 if self.Hearts[heart].index == self.LIVES1[self.p1_lives-1]:
-                    self.Hearts.remove(heart) 
+                    self.Hearts.remove(self.Hearts[heart]) 
             self.p1_lives -= 1
+            print("p1 remove heart")
         if playerIndex == 2:
             for heart in range(len(self.Hearts)):
                 if self.Hearts[heart].index == self.LIVES2[self.p2_lives-1]:
-                    self.Hearts.remove(heart)
+                    self.Hearts.remove(self.Hearts[heart]) 
             self.p2_lives -= 1
+            print("p2 remove heart")
         self.createGroups()  # Recreate the groups so the shell is removed
 
     # Create an empty 2D map of 11x11 size
