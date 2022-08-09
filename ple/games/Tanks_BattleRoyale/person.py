@@ -42,6 +42,7 @@ class Person(pygame.sprite.Sprite):
 
     # Move the person in the horizontal (%2==1) or vertical (%2==0) axis
     def update(self, raw_image, direction, value, width, height):
+        '''
         if direction == 0: # UP
             self.__position = (self.__position[0], self.__position[1] - value)
         if direction == 1: # RIGHT
@@ -50,8 +51,9 @@ class Person(pygame.sprite.Sprite):
             self.__position = (self.__position[0], self.__position[1] + value)
         if direction == 3: # LEFT
             self.__position = (self.__position[0] - value, self.__position[1])
-        # Update the image to the specified width and height
-        self.image = pygame.transform.scale(self.image, (width, height))    
+        '''
+        # Update the image to the specified width and height 
+        self.image = pygame.transform.scale(self.image, (width, height))
         self.rect.center = self.__position
 
     # Given a collider list, just check if the person instance collides with
