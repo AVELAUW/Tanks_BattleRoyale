@@ -214,6 +214,7 @@ class Board(object):
 
     # Check if the player wins
     def checkVictory(self):
+        print("p1 lives",self.p1_lives,"p2 lives",self.p2_lives)
         if self.p1_lives <= 0:
             print("Player 2 (right) wins!")
             self.resetGroups()
