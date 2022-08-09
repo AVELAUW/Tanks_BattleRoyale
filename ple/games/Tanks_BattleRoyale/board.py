@@ -124,7 +124,9 @@ class Board(object):
             
     # Destroy a shell if it has collided with a player or hit a wall
     def DestroyShell(self, playerIndex):
+        print(self.Shells, playerIndex)
         for shell in range(len(self.Shells)):
+            print(shell, self.Shells[shell])
             if self.Shells[shell].index == playerIndex:
                 self.Shells.remove(self.Shells[shell])
                 print("Shell removed")
