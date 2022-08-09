@@ -27,6 +27,7 @@ class Board(object):
         self.cycles = 0 # For the tank animations
         self.p1_dir = 1 # player1 is on the left, facing right
         self.p2_dir = 3 # player2 is on the right, facing left
+        self.winner = 0
         
         #self._dir = _dir
         self._dir = os.path.dirname(os.path.abspath(__file__))
@@ -78,6 +79,7 @@ class Board(object):
         self.p2_dir = 3 # player2 is on the right, facing left
         self.p1_lives = self.life
         self.p2_lives = self.life
+        self.winner = 0
         self.map = []  # We will create the map again when we reset the game
         self.Players = [
             Player(self.IMAGES["tank_left1"], (self.__width - 64+self.adjust, int(self.__height / 2)), 32, 32, 2),
@@ -203,17 +205,17 @@ class Board(object):
     def checkVictory(self):
         if self.p1_lives <= 0:
             print("Player 2 (right) wins!")
-            self.redrawScreen(winner=2)
+            self.winner = 2
             self.resetGroups()
         if self.p2_lives <= 0:
             print("Player 1 (left) wins!")
-            self.redrawScreen(winner=1)
+            self.winner = 1
             self.resetGroups()
     
     # Redraws the entire game screen
-    def redrawScreen(self, screen, width, height, winner=0):
-        if winner==1 or winner==2:
-            print("Player",winner,"won")
+    def redrawScreen(self, screen, width, height):
+        if self.winner==1 or self.winner==2:
+            print("Player",self.winner,"won")
             screen.blit(self.IMAGES["gameLost"], (0, 0))
             pygame.time.delay(5000)
         else:
