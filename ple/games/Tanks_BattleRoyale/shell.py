@@ -77,28 +77,28 @@ class Shell(Environment):
                  self.getPosition()[1] - value))
             self.image = raw_image
             # Update the image of a shell (and scale)
-            self.updateImage(self.image):
+            self.updateImage(self.image)
         if self.__direction == 1: # RIGHT
             self.setPosition(
                 (self.getPosition()[0] + value,
                  self.getPosition()[1]))
             self.image = raw_image
             # Update the image of a shell (and scale)
-            self.updateImage(self.image):
+            self.updateImage(self.image)
         if self.__direction == 2: # DOWN
             self.setPosition(
                 (self.getPosition()[0],
                  self.getPosition()[1] + value))
             self.image = raw_image
             # Update the image of a shell (and scale)
-            self.updateImage(self.image):
+            self.updateImage(self.image)
         if self.__direction == 3: # LEFT
             self.setPosition(
                 (self.getPosition()[0] - value,
                  self.getPosition()[1]))
             self.image = raw_image
             # Update the image of a shell (and scale)
-            self.updateImage(self.image):
+            self.updateImage(self.image)
         self.rect.center = self.getPosition()
 
     '''
