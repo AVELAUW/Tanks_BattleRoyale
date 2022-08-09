@@ -16,6 +16,7 @@ class Shell(Environment):
         self.__direction = direction
         self.index = index
         self.position = position
+        self.justShot = True 
         #self.image = raw_image
         #self.image = pygame.transform.scale(self.image, (16, 16))  # Image and Rect required for the draw function on sprites
         #self.rect = self.image.get_rect()
@@ -55,16 +56,32 @@ class Shell(Environment):
     def continuousUpdate(self, wallGroup, playerGroup):
         # We are moving UP, so update the shell's image upwards
         if self.__direction == 0:
-            self.update(self.IMAGES["shell_up1"], self.__speed)
+            if self.justShot:
+                self.update(self.IMAGES["shell_up2"], self.__speed)
+                self.justShot = False
+            else:
+                self.update(self.IMAGES["shell_up1"], self.__speed)
         # We are moving RIGHT, so update the shell's image to the right        
         if self.__direction == 1:
-            self.update(self.IMAGES["shell_right1"], self.__speed)
+            if self.justShot:
+                self.update(self.IMAGES["shell_right2"], self.__speed)
+                self.justShot = False
+            else:
+                self.update(self.IMAGES["shell_right1"], self.__speed)
         # We are moving DOWN, so update the shell's image downards        
         if self.__direction == 2:
-            self.update(self.IMAGES["shell_down1"], self.__speed)
+            if self.justShot:
+                self.update(self.IMAGES["shell_down2"], self.__speed)
+                self.justShot = False
+            else:
+                self.update(self.IMAGES["shell_down1"], self.__speed)
         # We are moving LEFT, so update the shell's image to the left
         if self.__direction == 3:
-            self.update(self.IMAGES["shell_left1"], self.__speed)
+            if self.justShot:
+                self.update(self.IMAGES["shell_left2"], self.__speed)
+                self.justShot = False
+            else:
+                self.update(self.IMAGES["shell_left1"], self.__speed)
         # When we hit a wall or player, we explode
         if self.checkCollision(wallGroup) or self.checkCollision(playerGroup):
             self.update(self.IMAGES["boom3"], 0)
