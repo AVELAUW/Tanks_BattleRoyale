@@ -194,7 +194,6 @@ class Board(object):
     def shellCheck(self):
         for shell in self.shellGroup:
             shell.continuousUpdate(self.wallGroup, self.playerGroup)
-            print(shell.checkCollision(self.playerGroup))
             if shell.index == 1 and shell.checkCollision(self.playerGroup):
                 print("player2 hit")
                 self.Shells.remove(shell) # self.Shells[shell]
