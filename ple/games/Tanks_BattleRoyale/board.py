@@ -137,14 +137,14 @@ class Board(object):
                 if self.Hearts[heart].index == self.LIVES1[self.p1_lives-1]:
                     self.Hearts.remove(self.Hearts[heart]) 
                     self.p1_lives -= 1
-                    print("p1 remove heart", self.p1_lives)
+                    print("Player 1 RemoveHeart", self.p1_lives)
                     break
         elif playerIndex == 2:
             for heart in range(len(self.Hearts)):
                 if self.Hearts[heart].index == self.LIVES2[self.p2_lives-1]:
                     self.Hearts.remove(self.Hearts[heart]) 
                     self.p2_lives -= 1
-                    print("p2 remove heart",self.p2_lives)
+                    print("Player 2 RemoveHeart",self.p2_lives)
                     break
         self.createGroups()  # Recreate the groups so the shell is removed
         print(len(self.Hearts))
@@ -166,15 +166,9 @@ class Board(object):
             self.map[0][j] = 1
             self.map[int(self.__width / 32) - 1][j] = 1
         # Block center of map
-        #self.map[5][4] = 1
+        self.map[5][2] = 1
         self.map[5][5] = 1
-        #self.map[5][6] = 1
-    
-    # Add hearts to our map
-    #def makeHearts(self):
-    #    for i in range(3):
-    #        self.map[0][i] = self.map[0][i] = 5
-    #        self.map[0][int(self.__width / 32) - 1 - i] = self.map[0][int(self.__width / 32) - 1 - i] = 5
+        self.map[5][8] = 1
 
     '''
     This is called once you have finished making the game field
@@ -195,16 +189,14 @@ class Board(object):
         for shell in self.shellGroup:
             shell.continuousUpdate(self.wallGroup, self.playerGroup)
             if shell.index == 1 and shell.checkCollision(self.playerGroup):
-                print("player2 hit", shell.checkCollision(self.playerGroup))
-                self.Shells.remove(shell) # self.Shells[shell]
+                self.Shells.remove(shell)
                 self.Players[1].setPosition((32+self.adjust, int(self.__height / 2)))
-                self.RemoveHeart(2)
+                self.RemoveHeart(2) # Player 2 hit
                 self.createGroups()
             if shell.index == 2 and shell.checkCollision(self.playerGroup):
-                print("player1 hit", shell.checkCollision(self.playerGroup))
-                self.Shells.remove(shell) # self.Shells[shell]
+                self.Shells.remove(shell)
                 self.Players[0].setPosition((self.__width - 64+self.adjust, int(self.__height / 2)))
-                self.RemoveHeart(1)
+                self.RemoveHeart(1) # Player 1 hit
                 self.createGroups()
             self.checkShellDestroy(shell)
     
@@ -225,7 +217,7 @@ class Board(object):
         # Draw all our groups on the background
         self.wallGroup.draw(screen)
         self.livesGroup.draw(screen)
-        self.heartsGroup.draw(screen)
+        #self.heartsGroup.draw(screen)
         self.playerGroup.draw(screen)
         self.shellGroup.draw(screen)
 
@@ -236,6 +228,7 @@ class Board(object):
         self.wallGroup = pygame.sprite.RenderPlain(self.Walls)
         self.livesGroup = pygame.sprite.RenderPlain(self.Lives)
         self.heartsGroup = pygame.sprite.RenderPlain(self.Hearts)
+        print(len(self.heartsGroup))
 
     '''
     Initialize the game by making the map, generating walls, and updating the groups.
@@ -243,6 +236,5 @@ class Board(object):
     def initializeGame(self):
         self.makeMap()
         self.makeWalls()
-        #self.makeHearts()
         self.populateMap()
         self.createGroups()
