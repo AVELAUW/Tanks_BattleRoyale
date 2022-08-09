@@ -99,7 +99,7 @@ class Board(object):
     # Checks to destroy a shell when it hits a walll or person
     def checkShellDestroy(self, shell):
         if pygame.sprite.spritecollide(shell, self.playerGroup, False) or pygame.sprite.spritecollide(shell, self.wallGroup, False):
-            shell.updateImage(self.IMAGES["boom3"])
+            shell.update(self.IMAGES["boom3"],self.value)
             # We can use indices on shells to uniquely identify each shell
             self.DestroyShell(shell.index)
 
