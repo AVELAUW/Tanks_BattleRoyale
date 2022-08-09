@@ -109,7 +109,6 @@ class Board(object):
         shoot = True
         for shell in range(len(self.Shells)):
             if self.Shells[shell].index == playerIndex:
-                #print("should not shoot")
                 shoot = False
         if shoot:
             if direction == 0: # UP
@@ -121,7 +120,6 @@ class Board(object):
             if direction == 3: # LEFT
                 self.Shells.append(Shell(self.IMAGES["shell_left2"], (location[0]-32, location[1]), self.value, direction, playerIndex))
             self.createGroups()  # We recreate the groups so the shell is added
-            #print("shells:", self.Shells)
             
     # Destroy a shell if it has collided with a player or hit a wall
     def DestroyShell(self, playerIndex):
