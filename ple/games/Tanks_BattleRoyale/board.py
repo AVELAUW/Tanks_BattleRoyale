@@ -35,6 +35,8 @@ class Board(object):
         self.IMAGES = {
             "tank_left1": pygame.image.load(os.path.join(self._dir, 'assets/tank_left_1.png')).convert_alpha(),
             "tank_right1": pygame.image.load(os.path.join(self._dir, 'assets/tank_right_1.png')).convert_alpha(),
+            "tank_down1": pygame.image.load(os.path.join(self._dir, 'assets/tank_down_1.png')).convert_alpha(),
+            "tank_up1": pygame.image.load(os.path.join(self._dir, 'assets/tank_up1.png')).convert_alpha(),
             "wood_block": pygame.image.load(os.path.join(self._dir, 'assets/wood_block.png')).convert_alpha(),
             "lives": pygame.image.load(os.path.join(self._dir, 'assets/lives.png')).convert_alpha(),
             "heart": pygame.image.load(os.path.join(self._dir, 'assets/heart.png')).convert_alpha(),
@@ -206,7 +208,7 @@ class Board(object):
                 self.RemoveHeart(1)
                 self.createGroups()
             self.checkShellDestroy(shell)
-
+    
     # Check if the player wins
     def checkVictory(self):
         if self.p1_lives <= 0:
