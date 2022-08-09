@@ -104,15 +104,14 @@ class Board(object):
     # Creates a new shell and add it to our shell group
     def CreateShell(self, location, direction, playerIndex):
         # Check if player already has a shell on the board
-        print(self.Shells)
-        print(playerIndex)
+        print("shells:", self.Shells, "player index:", playerIndex)
         shoot = True
         for shell in range(len(self.Shells)):
             if self.Shells(shell).index == playerIndex:
                 print("should not shoot")
                 shoot = False
         if shoot:
-            print("shoot")
+            print("shoot", direction)
             if direction == 0: # UP
                 self.Shells.append(Shell(self.IMAGES["shell_up2"], (location[0],location[1]-32), self.value, direction, playerIndex))
                 #self.Shells[?].updateImage(self.IMAGES["shell_up2"])                
@@ -125,6 +124,7 @@ class Board(object):
             if direction == 3: # LEFT
                 self.Shells.append(Shell(self.IMAGES["shell_left2"], (location[0]-32, location[1]), self.value, direction, playerIndex))
                 #self.Shells[?].updateImage(self.IMAGES["shell_left2"])
+            print("shells:", self.Shells)
             self.createGroups()  # We recreate the groups so the shell is added
             
     # Destroy a shell if it has collided with a player or hit a wall
@@ -204,7 +204,6 @@ class Board(object):
     def shellCheck(self):
         for shell in self.shellGroup:
             shell.continuousUpdate(self.wallGroup, self.playerGroup)
-            print("Collision:", shell.checkCollision(self.playerGroup))
             if shell.index == 1 and shell.checkCollision(self.playerGroup):
                 print("player2 hit")
                 self.Shells.remove(shell) # self.Shells[shell]
