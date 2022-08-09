@@ -213,6 +213,7 @@ class Board(object):
     # Redraws the entire game screen
     def redrawScreen(self, screen, width, height, winner=0):
         if winner==1 or winner==2:
+            print("Player",winner,"won")
             screen.blit(self.IMAGES["gameLost"], (0, 0))
             pygame.time.delay(5000)
         else:
