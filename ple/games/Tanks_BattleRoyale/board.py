@@ -72,6 +72,7 @@ class Board(object):
         self.heartsGroup = pygame.sprite.RenderPlain(self.Hearts)
 
     def resetGroups(self):
+        print("resetGroup")
         self.cycles = 0 # For the tank animations
         self.p1_dir = 1 # player1 is on the left, facing right
         self.p2_dir = 3 # player2 is on the right, facing left
@@ -214,7 +215,7 @@ class Board(object):
         if winner==1 or winner==2:
             print("Player",winner,"won")
             screen.blit(self.IMAGES["gameLost"], (0, 0))
-            #pygame.time.delay(5000)
+            pygame.time.delay(5000)
         else:
             #self.backdrop.draw_background(self.screen) 
             screen.blit(self.IMAGES["background1"], (0, 0))
