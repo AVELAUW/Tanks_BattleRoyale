@@ -72,7 +72,10 @@ class TanksBattleRoyale(PyGameWrapper):
         return self.newGame.p1_lives - self.newGame.p2_lives
 
     def game_over(self):
-        return (self.newGame.p1_lives <= 0 or self.newGame.p2_lives <= 0)
+        startover = (self.newGame.p1_lives <= 0 or self.newGame.p2_lives <= 0)
+        print("startover:",startover)
+        print("checkVictory:",newGame.checkVictory())
+        return startover
     
     #def getGameState(self):
         # implement this
@@ -245,12 +248,12 @@ class TanksBattleRoyale(PyGameWrapper):
         We use cycles to animate the character, when we change direction we also reset the cycles
         We also change the direction according to the key pressed
         '''
-
+        
+        # Check if one player has defeated the other
+        self.newGame.checkVictory()
+        
         # Redraws all our instances onto the screen
-        self.newGame.redrawScreen(self.screen, self.width, self.height)
+        self.newGame.redrawScreen(self.screen, self.width, self.height, False)
 
         # Update the shell and check for collisions with the other player
         self.newGame.shellCheck()
-
-        # Check if one player has defeated the other
-        self.newGame.checkVictory()
