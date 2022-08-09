@@ -20,7 +20,7 @@ class Board(object):
         self.__width = width
         self.__height = height
         self.adjust = 14
-        self.value = 0.25 # value # Shell speed
+        self.value = 1 # value # Shell speed
         self.life = 3
         self.p1_lives = self.life
         self.p2_lives = self.life
@@ -42,7 +42,7 @@ class Board(object):
             "shell_left2": pygame.image.load(os.path.join(self._dir, 'assets/shell_left2.png')).convert_alpha(),
             "shell_up2": pygame.image.load(os.path.join(self._dir, 'assets/shell_up_2.png')).convert_alpha(),
             "shell_down2": pygame.image.load(os.path.join(self._dir, 'assets/shell_down2.png')).convert_alpha(),
-            "boom3": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/boom3.png')), (16, 16)).convert_alpha(),
+            "boom3": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/boom3.png')), (32, 32)).convert_alpha(),
             "background1": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/dirt.png')), (352, 352)).convert_alpha(),
             "background2": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/dirt2.png')), (352, 352)).convert_alpha()
         }
