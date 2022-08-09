@@ -137,6 +137,7 @@ class Board(object):
     def RemoveHeart(self, playerIndex):
         if playerIndex == 1:
             for heart in range(len(self.Hearts)):
+                print(self.Hearts, heart) 
                 if self.Hearts[heart].index == self.LIVES1[self.p1_lives-1]:
                     self.Hearts.remove(self.Hearts[heart]) 
             self.p1_lives -= 1
