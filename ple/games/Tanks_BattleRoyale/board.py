@@ -126,7 +126,6 @@ class Board(object):
     def DestroyShell(self, playerIndex):
         for shell in range(len(self.Shells)):
             if self.Shells[shell].index == playerIndex:
-                print("Shell removed:", shell)
                 self.Shells.remove(self.Shells[shell])
                 break
         self.createGroups()  # Recreate the groups so the shell is removed
