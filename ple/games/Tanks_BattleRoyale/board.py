@@ -216,9 +216,10 @@ class Board(object):
     def checkVictory(self):
         if self.p1_lives <= 0:
             print("Player 2 (right) wins!")
+            self.resetGroups()
         if self.p2_lives <= 0:
             print("Player 1 (left) wins!")    
-        self.resetGroups()
+            self.resetGroups()
 
     # Redraws the entire game screen
     def redrawScreen(self, screen, width, height):
