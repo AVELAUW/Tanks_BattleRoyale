@@ -232,11 +232,9 @@ class TanksBattleRoyale(PyGameWrapper):
                 
                 # Check if p1 has fired a shell
                 if event.key == self.actions["p1_fire"]:
-                    print("p1 fire:",self.newGame.p1_dir)
                     self.newGame.CreateShell(self.newGame.Players[0].getPosition(), self.newGame.p1_dir, self.newGame.Players[0].index)
                 # Check if p2 has fired a shell
                 if event.key == self.actions["p2_fire"]:
-                    print("p2 fire:",self.newGame.p2_dir)
                     self.newGame.CreateShell(self.newGame.Players[1].getPosition(), self.newGame.p2_dir, self.newGame.Players[1].index)
 
         # Update the player's position & animation
