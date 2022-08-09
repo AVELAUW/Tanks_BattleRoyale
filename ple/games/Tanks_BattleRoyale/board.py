@@ -83,16 +83,16 @@ class Board(object):
         self.Walls = []
         self.Shells = []
         self.Lives = [
-            Wall(self.IMAGES["lives"], (32-self.adjust, self.adjust), 41), # For player1
-            Wall(self.IMAGES["lives"], (self.__width - 128+self.adjust, self.adjust), 42)] # For player2
+            Wall(self.IMAGES["lives"], (32, self.adjust), 41), # For player1
+            Wall(self.IMAGES["lives"], (self.__width - 128-self.adjust, self.adjust), 42)] # For player2
         #for playa in self.Lives: playa.modifySize(self.IMAGES[lives], 32, 96)
         self.Hearts = [
-            Wall(self.IMAGES["heart"], (64-self.adjust, self.adjust), 511), # player1 life1
-            Wall(self.IMAGES["heart"], (96-self.adjust, self.adjust), 512), # player1 life2
-            Wall(self.IMAGES["heart"], (128-self.adjust, self.adjust), 513), # player1 life3
-            Wall(self.IMAGES["heart"], (self.__width - 32+self.adjust, self.adjust), 521), # player2 life1
-            Wall(self.IMAGES["heart"], (self.__width - 64+self.adjust, self.adjust), 522), # player2 life2
-            Wall(self.IMAGES["heart"], (self.__width - 96+self.adjust, self.adjust), 523)] # player2 life3
+            Wall(self.IMAGES["heart"], (64, self.adjust), 511), # player1 life1
+            Wall(self.IMAGES["heart"], (96, self.adjust), 512), # player1 life2
+            Wall(self.IMAGES["heart"], (128, self.adjust), 513), # player1 life3
+            Wall(self.IMAGES["heart"], (self.__width - 32-self.adjust, self.adjust), 521), # player2 life1
+            Wall(self.IMAGES["heart"], (self.__width - 64-self.adjust, self.adjust), 522), # player2 life2
+            Wall(self.IMAGES["heart"], (self.__width - 96-self.adjust, self.adjust), 523)] # player2 life3
         self.initializeGame()  # This initializes the game and generates our map
         self.createGroups()  # This creates the instance groups
 
@@ -131,21 +131,23 @@ class Board(object):
     
     # Remove a heart if the player has lost their life
     def RemoveHeart(self, playerIndex):
+        print(len(self.Hearts))
         if playerIndex == 1:
             for heart in range(len(self.Hearts)):
                 if self.Hearts[heart].index == self.LIVES1[self.p1_lives-1]:
                     self.Hearts.remove(self.Hearts[heart]) 
+                    self.p1_lives -= 1
+                    print("p1 remove heart", self.p1_lives)
                     break
-            self.p1_lives -= 1
-            print("p1 remove heart", self.p1_lives)
-        if playerIndex == 2:
+        elif playerIndex == 2:
             for heart in range(len(self.Hearts)):
                 if self.Hearts[heart].index == self.LIVES2[self.p2_lives-1]:
                     self.Hearts.remove(self.Hearts[heart]) 
+                    self.p2_lives -= 1
+                    print("p2 remove heart",self.p2_lives)
                     break
-            self.p2_lives -= 1
-            print("p2 remove heart",self.p2_lives)
         self.createGroups()  # Recreate the groups so the shell is removed
+        print(len(self.Hearts))
 
     # Create an empty 2D map of 11x11 size
     def makeMap(self):
