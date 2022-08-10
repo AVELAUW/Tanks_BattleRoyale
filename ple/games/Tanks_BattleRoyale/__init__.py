@@ -170,14 +170,14 @@ class TanksBattleRoyale(PyGameWrapper):
                     self.newGame.cycles = (self.newGame.cycles + 1) % 2
                     if self.newGame.cycles == 0:
                         # Display the first image for half the cycles
-                        self.newGame.Players[1].update(self.IMAGES["tank_down1"], self.newGame.p1_dir, self.newGame.Players[1].getSpeed(), 32, 32)
+                        self.newGame.Players[1].update(self.IMAGES["tank_down1"], self.newGame.p2_dir, self.newGame.Players[1].getSpeed(), 32, 32)
                     if self.newGame.cycles == 1:
                         # Display the second image for half the cycles
-                        self.newGame.Players[1].update(self.IMAGES["tank_down2"], self.newGame.p1_dir, self.newGame.Players[1].getSpeed(), 32, 32)    
+                        self.newGame.Players[1].update(self.IMAGES["tank_down2"], self.newGame.p2_dir, self.newGame.Players[1].getSpeed(), 32, 32)    
                     self.wallsCollidedExact = self.newGame.Players[1].checkCollision(self.wallGroup)
                     # If we have collided with a wall, move the player back to where it was in the last state
                     if self.wallsCollidedExact:
-                        self.newGame.Players[1].update(self.IMAGES["tank_down1"], self.newGame.p1_dir, -self.newGame.Players[1].getSpeed(), 32, 32)
+                        self.newGame.Players[1].update(self.IMAGES["tank_down1"], self.newGame.p2_dir, -self.newGame.Players[1].getSpeed(), 32, 32)
                 # To check p2 collisions above, we move the player upwards then check
                 # and move them back to their original location
                 if event.key == self.actions["p2_up"]:
@@ -187,14 +187,14 @@ class TanksBattleRoyale(PyGameWrapper):
                     self.newGame.cycles = (self.newGame.cycles + 1) % 2
                     if self.newGame.cycles == 0:
                         # Display the first image for half the cycles
-                        self.newGame.Players[1].update(self.IMAGES["tank_up1"], self.newGame.p1_dir, self.newGame.Players[1].getSpeed(), 32, 32)
+                        self.newGame.Players[1].update(self.IMAGES["tank_up1"], self.newGame.p2_dir, self.newGame.Players[1].getSpeed(), 32, 32)
                     if self.newGame.cycles == 1:
                         # Display the second image for half the cycles
-                        self.newGame.Players[1].update(self.IMAGES["tank_up2"], self.newGame.p1_dir, self.newGame.Players[1].getSpeed(), 32, 32)    
+                        self.newGame.Players[1].update(self.IMAGES["tank_up2"], self.newGame.p2_dir, self.newGame.Players[1].getSpeed(), 32, 32)    
                     self.wallsCollidedExact = self.newGame.Players[1].checkCollision(self.wallGroup)
                     # If we have collided with a wall, move the player back to where it was in the last state
                     if self.wallsCollidedExact:
-                        self.newGame.Players[1].update(self.IMAGES["tank_up1"], self.newGame.p1_dir, -self.newGame.Players[1].getSpeed(), 32, 32)
+                        self.newGame.Players[1].update(self.IMAGES["tank_up1"], self.newGame.p2_dir, -self.newGame.Players[1].getSpeed(), 32, 32)
                 # To check p2 collisions right, we move the player to the right, check for collisions,
                 # then move them back to their original location
                 if event.key == self.actions["p2_right"]:
@@ -204,14 +204,14 @@ class TanksBattleRoyale(PyGameWrapper):
                     self.newGame.cycles = (self.newGame.cycles + 1) % 2
                     if self.newGame.cycles == 0:
                         # Display the first image for half the cycles
-                        self.newGame.Players[1].update(self.IMAGES["tank_right1"], self.newGame.p1_dir, self.newGame.Players[1].getSpeed(), 32, 32)
+                        self.newGame.Players[1].update(self.IMAGES["tank_right1"], self.newGame.p2_dir, self.newGame.Players[1].getSpeed(), 32, 32)
                     if self.newGame.cycles == 1:
                         # Display the second image for half the cycles
-                        self.newGame.Players[1].update(self.IMAGES["tank_right2"], self.newGame.p1_dir, self.newGame.Players[1].getSpeed(), 32, 32)    
+                        self.newGame.Players[1].update(self.IMAGES["tank_right2"], self.newGame.p2_dir, self.newGame.Players[1].getSpeed(), 32, 32)    
                     self.wallsCollidedExact = self.newGame.Players[1].checkCollision(self.wallGroup)
                     # If we have collided with a wall, move the player back to where it was in the last state
                     if self.wallsCollidedExact:
-                        self.newGame.Players[1].update(self.IMAGES["tank_right1"], self.newGame.p1_dir, -self.newGame.Players[1].getSpeed(), 32, 32)
+                        self.newGame.Players[1].update(self.IMAGES["tank_right1"], self.newGame.p2_dir, -self.newGame.Players[1].getSpeed(), 32, 32)
                 # To check p2 collisions left, we move the player to the left, check for collisions,
                 # then move them back to their original location
                 if event.key == self.actions["p2_left"]:
@@ -221,14 +221,14 @@ class TanksBattleRoyale(PyGameWrapper):
                     self.newGame.cycles = (self.newGame.cycles + 1) % 2
                     if self.newGame.cycles == 0:
                         # Display the first image for half the cycles
-                        self.newGame.Players[1].update(self.IMAGES["tank_left1"], self.newGame.p1_dir, self.newGame.Players[1].getSpeed(), 32, 32)
+                        self.newGame.Players[1].update(self.IMAGES["tank_left1"], self.newGame.p2_dir, self.newGame.Players[1].getSpeed(), 32, 32)
                     if self.newGame.cycles == 1:
                         # Display the second image for half the cycles
-                        self.newGame.Players[1].update(self.IMAGES["tank_left2"], self.newGame.p1_dir, self.newGame.Players[1].getSpeed(), 32, 32)    
+                        self.newGame.Players[1].update(self.IMAGES["tank_left2"], self.newGame.p2_dir, self.newGame.Players[1].getSpeed(), 32, 32)    
                     self.wallsCollidedExact = self.newGame.Players[1].checkCollision(self.wallGroup)
                     # If we have collided with a wall, move the player back to where it was in the last state
                     if self.wallsCollidedExact:
-                        self.newGame.Players[1].update(self.IMAGES["tank_left1"], self.newGame.p1_dir, -self.newGame.Players[1].getSpeed(), 32, 32)
+                        self.newGame.Players[1].update(self.IMAGES["tank_left1"], self.newGame.p2_dir, -self.newGame.Players[1].getSpeed(), 32, 32)
                 
                 # Check if p1 has fired a shell
                 if event.key == self.actions["p1_fire"]:
