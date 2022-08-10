@@ -164,7 +164,7 @@ class TanksBattleRoyale(PyGameWrapper):
                 # To check p2 collisions below, we move the player downwards then check
                 # and move them back to their original location
                 if event.key == self.actions["p2_down"]:
-                    print(event.key)
+                    print("p2 down:",event.key)
                     if self.newGame.p1_dir != 2:
                         self.newGame.p1_dir = 2
                         self.newGame.cycles = -1  # Reset cycles
@@ -182,7 +182,7 @@ class TanksBattleRoyale(PyGameWrapper):
                 # To check p2 collisions above, we move the player upwards then check
                 # and move them back to their original location
                 if event.key == self.actions["p2_up"]:
-                    print(event.key)
+                    print("p2 up:",event.key)
                     if self.newGame.p1_dir != 0:
                         self.newGame.p1_dir = 0
                         self.newGame.cycles = -1  # Reset cycles
@@ -200,7 +200,7 @@ class TanksBattleRoyale(PyGameWrapper):
                 # To check p2 collisions right, we move the player to the right, check for collisions,
                 # then move them back to their original location
                 if event.key == self.actions["p2_right"]:
-                    print(event.key)
+                    print("p2 right:",event.key)
                     if self.newGame.p1_dir != 1:
                         self.newGame.p1_dir = 1
                         self.newGame.cycles = -1  # Reset cycles
@@ -218,7 +218,7 @@ class TanksBattleRoyale(PyGameWrapper):
                 # To check p2 collisions left, we move the player to the left, check for collisions,
                 # then move them back to their original location
                 if event.key == self.actions["p2_left"]:
-                    print(event.key)
+                    print("p2 left:",event.key)
                     if self.newGame.p1_dir != 3:
                         self.newGame.p1_dir = 3
                         self.newGame.cycles = -1  # Reset cycles
