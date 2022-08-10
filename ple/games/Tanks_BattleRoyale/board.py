@@ -48,7 +48,8 @@ class Board(object):
             "boom3": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/boom3.png')), (32, 32)).convert_alpha(),
             "background1": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/dirt.png')), (352, 352)).convert_alpha(),
             "background2": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/dirt2.png')), (352, 352)).convert_alpha(),
-            "gameLost": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/game_over.png')), (352, 352)).convert_alpha()
+            "p1Won": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/p1_win.PNG')), (352, 352)).convert_alpha(),
+            "p2Won": pygame.transform.scale(pygame.image.load(os.path.join(self._dir, 'assets/p2_win.PNG')), (352, 352)).convert_alpha()
         }
 
         self.white = (255, 255, 255)
@@ -87,13 +88,13 @@ class Board(object):
         self.Walls = []
         self.Shells = []
         self.Lives = [
-            Wall(self.IMAGES["lives"], (32, self.adjust), 41), # For player1
+            Wall(self.IMAGES["lives"], (32+self.adjust, self.adjust), 41), # For player1
             Wall(self.IMAGES["lives"], (self.__width - 128-self.adjust, self.adjust), 42)] # For player2
         #for playa in self.Lives: playa.modifySize(self.IMAGES[lives], 32, 96)
         self.Hearts = [
-            Wall(self.IMAGES["heart"], (64, self.adjust), 511), # player1 life1
-            Wall(self.IMAGES["heart"], (96, self.adjust), 512), # player1 life2
-            Wall(self.IMAGES["heart"], (128, self.adjust), 513), # player1 life3
+            Wall(self.IMAGES["heart"], (64+self.adjust, self.adjust), 511), # player1 life1
+            Wall(self.IMAGES["heart"], (96+self.adjust, self.adjust), 512), # player1 life2
+            Wall(self.IMAGES["heart"], (128+self.adjust, self.adjust), 513), # player1 life3
             Wall(self.IMAGES["heart"], (self.__width - 32-self.adjust, self.adjust), 521), # player2 life1
             Wall(self.IMAGES["heart"], (self.__width - 64-self.adjust, self.adjust), 522), # player2 life2
             Wall(self.IMAGES["heart"], (self.__width - 96-self.adjust, self.adjust), 523)] # player2 life3
@@ -206,18 +207,22 @@ class Board(object):
         if self.p1_lives <= 0:
             print("Player 2 (right) wins!")
             self.winner = 2
-            self.resetGroups()
-        if self.p2_lives <= 0:
+        elif self.p2_lives <= 0:
             print("Player 1 (left) wins!")
             self.winner = 1
-            self.resetGroups()
     
     # Redraws the entire game screen
     def redrawScreen(self, screen, width, height):
-        if self.winner==1 or self.winner==2:
+        if self.winner==1:
             print("Player",self.winner,"won")
-            screen.blit(self.IMAGES["gameLost"], (0, 0))
+            screen.blit(self.IMAGES["p1Won"], (0, 0))
             pygame.time.delay(5000)
+            self.resetGroups()
+        if self.winner==2:
+            print("Player",self.winner,"won")
+            screen.blit(self.IMAGES["p2Won"], (0, 0))
+            pygame.time.delay(5000)
+            self.resetGroups()
         else:
             #self.backdrop.draw_background(self.screen) 
             screen.blit(self.IMAGES["background1"], (0, 0))
