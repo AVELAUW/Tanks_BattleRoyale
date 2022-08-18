@@ -63,6 +63,12 @@ class Board(object):
         self.Shells = []
         self.Lives = []
         self.Hearts = []
+        
+        # Delete this portion
+        print("Player",self.winner,"won")
+        screen.blit(self.IMAGES["p1Won"], (0, 0))
+        pygame.time.delay(5000)
+        self.resetGroups()
         # Resets the above groups and initializes the game for us
         self.resetGroups()
 
@@ -188,6 +194,7 @@ class Board(object):
     def shellCheck(self):
         for shell in self.shellGroup:
             shell.continuousUpdate(self.wallGroup, self.playerGroup)
+            print(shell.index, shell.checkCollision(self.playerGroup)
             if shell.index == 1 and shell.checkCollision(self.playerGroup):
                 self.Shells.remove(shell)
                 #self.Players[1].setPosition((self.__width - 64+self.adjust, int(self.__height / 2))) 
