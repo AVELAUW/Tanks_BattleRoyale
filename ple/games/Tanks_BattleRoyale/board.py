@@ -64,11 +64,6 @@ class Board(object):
         self.Lives = []
         self.Hearts = []
         
-        # Delete this portion
-        print("Player",self.winner,"won")
-        screen.blit(self.IMAGES["p1Won"], (0, 0))
-        pygame.time.delay(5000)
-        self.resetGroups()
         # Resets the above groups and initializes the game for us
         self.resetGroups()
 
