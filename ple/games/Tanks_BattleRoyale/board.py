@@ -209,9 +209,13 @@ class Board(object):
         if self.p1_lives <= 0:
             print("Player 2 (right) wins!")
             self.winner = 2
+            return 2
         elif self.p2_lives <= 0:
             print("Player 1 (left) wins!")
             self.winner = 1
+            return 1
+        else:
+            return 0
     
     # Redraws the entire game screen
     def redrawScreen(self, screen, width, height):
