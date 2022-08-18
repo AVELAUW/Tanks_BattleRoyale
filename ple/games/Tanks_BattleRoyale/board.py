@@ -190,7 +190,7 @@ class Board(object):
         for shell in self.shellGroup:
             shell.continuousUpdate(self.wallGroup, self.playerGroup)
             print(shell.index, shell.checkCollision(self.playerGroup))
-            if shell.index == 1 and shell.checkCollision(self.playerGroup):
+            if shell.index == 1 and shell.checkCollision(self.playerGroup): #[0].index
                 self.Shells.remove(shell)
                 #self.Players[1].setPosition((self.__width - 64+self.adjust, int(self.__height / 2))) 
                 self.RemoveHeart(2) # Player 2 hit
@@ -219,11 +219,11 @@ class Board(object):
     
     # Redraws the entire game screen
     def redrawScreen(self, screen, width, height):
-        if self.winner==1:
+        if self.winner==1 or self.p2_lives <= 0:
             print("Player",self.winner,"won")
             screen.blit(self.IMAGES["p1Won"], (0, 0))
             #self.resetGroups()
-        if self.winner==2:
+        if self.winner==2 or self.p1_lives <= 0:
             print("Player",self.winner,"won")
             screen.blit(self.IMAGES["p2Won"], (0, 0))
             #self.resetGroups()
