@@ -247,7 +247,7 @@ class TanksBattleRoyale(PyGameWrapper):
         '''
         
         # Check if one player has defeated the other
-        print(self.newGame.checkVictory())
+        self.newGame.checkVictory()
         
         # Redraws all our instances onto the screen
         self.newGame.redrawScreen(self.screen, self.width, self.height)
