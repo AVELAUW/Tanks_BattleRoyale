@@ -222,13 +222,11 @@ class Board(object):
         if self.winner==1:
             print("Player",self.winner,"won")
             screen.blit(self.IMAGES["p1Won"], (0, 0))
-            pygame.time.delay(5000)
-            self.resetGroups()
+            #self.resetGroups()
         if self.winner==2:
             print("Player",self.winner,"won")
             screen.blit(self.IMAGES["p2Won"], (0, 0))
-            pygame.time.delay(5000)
-            self.resetGroups()
+            #self.resetGroups()
         else:
             #self.backdrop.draw_background(self.screen) 
             screen.blit(self.IMAGES["background1"], (0, 0))
